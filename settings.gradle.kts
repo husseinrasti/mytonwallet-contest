@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyTonWalletContest"
 include(":app")
- 
+include(":core:navigation")
+include(":core:dagger-hilt")
+include(":core:datastore")
+include(":core:security")
