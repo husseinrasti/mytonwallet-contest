@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 /*
  * Copyright (C) 2022  The Android Open Source Project
  *
@@ -19,13 +21,19 @@ plugins {
     `java-gradle-plugin`
 }
 
-//group = "com.husseinrasti.convention"
+group = "com.husseinrasti.convention"
 //version = "1.0.0"
 
 repositories {
     google()
     mavenCentral()
     gradlePluginPortal()
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
 }
 
 dependencies {

@@ -16,10 +16,12 @@
 
 package com.husseinrasti.convention.plugins
 
+import com.husseinrasti.convention.ext.findLibrary
 import com.husseinrasti.convention.ext.library.androidLibrary
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.kotlin
 
 class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -30,6 +32,18 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             pluginManager.apply("build.logic.android.hilt")
             androidLibrary()
             dependencies {
+                add("testImplementation", kotlin("test"))
+                add("androidTestImplementation", kotlin("test"))
+                add("implementation", findLibrary("kotlinx.coroutines.android"))
+                add("implementation", findLibrary("google.gson"))
+                add("implementation", findLibrary("androidx.dataStore.core"))
+                add("implementation", findLibrary("androidx.dataStore.preferences"))
+                add("implementation", findLibrary("androidx.security.crypto"))
+                add("testImplementation", findLibrary("junit"))
+                add("androidTestImplementation", findLibrary("androidx.junit"))
+                add("androidTestImplementation", findLibrary("androidx.espresso.core"))
+                add("androidTestImplementation", platform(findLibrary("androidx.compose.bom")))
+                add("androidTestImplementation", findLibrary("androidx.ui.test.junit4"))
             }
         }
     }

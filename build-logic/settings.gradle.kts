@@ -28,4 +28,4 @@ dependencyResolutionManagement {
 }
 
 include(":convention")
-//project(":convention").buildFileName = "convention.gradle.kts"
+project(":convention").buildFileName = "convention.gradle.kts"

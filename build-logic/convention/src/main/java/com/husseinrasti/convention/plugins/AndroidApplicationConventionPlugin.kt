@@ -45,6 +45,17 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 add("implementation", findLibrary("androidx.compose.material"))
                 add("implementation", findLibrary("androidx.lifecycle.runtimeCompose"))
                 add("implementation", findLibrary("androidx.lifecycle.viewModelCompose"))
+                add("implementation", findLibrary("google.gson"))
+                add("implementation", findLibrary("androidx.dataStore.core"))
+                add("implementation", findLibrary("androidx.dataStore.preferences"))
+                add("implementation", findLibrary("androidx.security.crypto"))
+                add("testImplementation", findLibrary("junit"))
+                add("androidTestImplementation", findLibrary("androidx.junit"))
+                add("androidTestImplementation", findLibrary("androidx.espresso.core"))
+                add("androidTestImplementation", platform(findLibrary("androidx.compose.bom")))
+                add("androidTestImplementation", findLibrary("androidx.ui.test.junit4"))
+                add("debugImplementation", findLibrary("androidx.ui.tooling"))
+                add("debugImplementation", findLibrary("androidx.ui.test.manifest"))
             }
         }
     }
