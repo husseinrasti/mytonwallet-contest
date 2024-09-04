@@ -43,6 +43,7 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
                 add("implementation", findLibrary("androidx.compose.foundation"))
                 add("implementation", findLibrary("androidx.compose.runtime"))
                 add("implementation", findLibrary("androidx.compose.material"))
+                add("implementation", findLibrary("androidx.material3"))
                 add("implementation", findLibrary("androidx.constraintlayout.compose"))
                 add("implementation", findLibrary("androidx.lifecycle.runtimeCompose"))
                 add("implementation", findLibrary("androidx.lifecycle.viewModelCompose"))

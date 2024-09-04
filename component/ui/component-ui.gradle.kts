@@ -7,5 +7,5 @@ android {
 }
 
 dependencies {
-    implementation(project(":component:theme"))
+    api(project(":component:theme"))
 }

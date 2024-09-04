@@ -93,7 +93,7 @@ fun TonButton(
 @Composable
 fun TonButtonPreview() {
     MyTonWalletContestTheme {
-        TonButton(text = "Ton Wallet", onClick = {})
+        TonButton(text = "My Ton Wallet", onClick = {})
     }
 }
 
@@ -102,7 +102,7 @@ fun TonButtonPreview() {
 fun TonButtonPreviewDisable() {
     MyTonWalletContestTheme {
         TonButton(
-            text = "Ton Wallet", onClick = {},
+            text = "My Ton Wallet", onClick = {},
             enabled = false
         )
     }

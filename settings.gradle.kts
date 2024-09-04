@@ -29,6 +29,13 @@ include(":component:ui")
 include(":component:theme")
 include(":component:navigation")
 
+include(":feature:create-wallet:ui")
+include(":feature:create-wallet:data")
+include(":feature:create-wallet:domain")
+include(":feature:auth:ui")
+include(":feature:auth:data")
+include(":feature:auth:domain")
+
 fun renameBuildFileName(name: String, project: ProjectDescriptor) {
     if (project.children.isEmpty()) {
         println("$name.gradle.kts")

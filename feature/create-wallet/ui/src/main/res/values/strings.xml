@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_ton_wallet">My Ton Wallet</string>
+    <string name="desc_ton_wallet">My Ton Wallet allows you to make fast and secure blockchain-based payments without intermediaries.</string>
+    <string name="btn_create_my_wallet">Create my wallet</string>
+    <string name="btn_import_existing_wallet">Import existing wallet</string>
+
+    <string name="title_congratulations">Congratulations</string>
+    <string name="desc_congratulations">
+        Your My Ton Wallet has just been created.
+        \n
+        Only you control it.
+        \n\n
+        To be able to always have access to it, please write down secret words and set up a secure passcode.
+    </string>
+    <string name="btn_proceed">Proceed</string>
+    <string name="title_your_recovery_phrase">Your Recovery Phrase</string>
+    <string name="desc_your_recovery_phrase">Write down these 24 words in this exact order and keep them in a secure place. Do not share this list with anyone. If you lose it, you will irrevocably lose access to your TON account.</string>
+    <string name="btn_done">Done</string>
+    <string name="btn_skip">Skip</string>
+    <string name="btn_ok_sorry">OK. sorry</string>
+    <string name="title_sure_done">Sure done?</string>
+    <string name="msg_enough_time_write_words">You didn’t have enough time to write these words down.</string>
+    <string name="title_test_time">Test Time!</string>
+    <string name="format_msg_test_time_to_enter_words">Let’s check that you wrote them down correctly. Please enter the words  %1$s, %2$s and %3$s.</string>
+    <string name="btn_continue">Continue</string>
+    <string name="btn_see_words">See words</string>
+    <string name="btn_try_again">Try again</string>
+    <string name="title_incorrect_words">Incorrect words</string>
+    <string name="msg_incorrect_words">The secret words you have entered\ndo not match the ones in the list.</string>
+</resources>
