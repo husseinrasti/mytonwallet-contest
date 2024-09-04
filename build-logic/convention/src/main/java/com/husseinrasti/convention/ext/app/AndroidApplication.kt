@@ -73,7 +73,9 @@ fun Project.androidApplication() {
         defaultConfig.multiDexEnabled = true
         defaultConfig.versionCode = BuildAndroidConfig.VERSION_CODE
         defaultConfig.versionName = BuildAndroidConfig.VERSION_NAME
-        defaultConfig.vectorDrawables.useSupportLibrary = BuildAndroidConfig.SUPPORT_LIBRARY_VECTOR_DRAWABLES
+        defaultConfig.vectorDrawables {
+            useSupportLibrary = BuildAndroidConfig.SUPPORT_LIBRARY_VECTOR_DRAWABLES
+        }
         defaultConfig.testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
 
         applicationVariants.all {
