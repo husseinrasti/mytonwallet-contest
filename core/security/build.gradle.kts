@@ -3,5 +3,5 @@ plugins {
 }
 
 android {
-    namespace = "com.husseinrasti.app.core.dagger_hilt"
+    namespace = "com.husseinrasti.app.core.security"
 }
