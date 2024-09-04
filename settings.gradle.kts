@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -24,4 +25,3 @@ include(":app")
 include(":core:navigation")
 include(":core:dagger-hilt")
 include(":core:datastore")
-include(":core:security")

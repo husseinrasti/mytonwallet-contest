@@ -1,10 +1,9 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    id("build.logic.android.library")
 }
 
 android {
-    namespace = "com.husseinrasti.app.mytonwallet.datastore"
+    namespace = "com.husseinrasti.app.core.datastore"
 }
 
 dependencies {
