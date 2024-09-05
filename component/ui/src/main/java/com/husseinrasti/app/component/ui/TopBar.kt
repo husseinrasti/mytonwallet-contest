@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TonTopAppBar(
+fun MyTonWalletTopAppBar(
     title: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     navigationIcon: @Composable (() -> Unit)? = null,
@@ -33,7 +33,7 @@ fun TonTopAppBar(
 }
 
 @Composable
-fun TonTopAppBar(
+fun MyTonWalletTopAppBar(
     modifier: Modifier = Modifier,
     title: String = "",
     icon: ImageVector = Icons.Default.ArrowBack,
@@ -43,7 +43,7 @@ fun TonTopAppBar(
     contentColor: Color = contentColorFor(backgroundColor),
     elevation: Dp = AppBarDefaults.TopAppBarElevation
 ) {
-    TonTopAppBar(
+    MyTonWalletTopAppBar(
         navigationIcon = {
             IconToolbar(
                 onClick = onClickNavigation,
@@ -63,7 +63,7 @@ fun TonTopAppBar(
 }
 
 @Composable
-fun TonTopAppBar(
+fun MyTonWalletTopAppBar(
     modifier: Modifier = Modifier,
     backgroundColor: Color = MaterialTheme.colors.primarySurface,
     contentColor: Color = contentColorFor(backgroundColor),
@@ -82,7 +82,7 @@ fun TonTopAppBar(
 }
 
 @Composable
-fun TonTopAppBar(
+fun MyTonWalletTopAppBar(
     modifier: Modifier = Modifier,
     title: String = "",
     icon: ImageVector = Icons.Default.ArrowBack,
@@ -92,7 +92,7 @@ fun TonTopAppBar(
     elevation: Dp = AppBarDefaults.TopAppBarElevation,
     contentPadding: PaddingValues = AppBarDefaults.ContentPadding,
 ) {
-    TonTopAppBar(
+    MyTonWalletTopAppBar(
         modifier = modifier,
         backgroundColor = backgroundColor,
         contentColor = contentColor,

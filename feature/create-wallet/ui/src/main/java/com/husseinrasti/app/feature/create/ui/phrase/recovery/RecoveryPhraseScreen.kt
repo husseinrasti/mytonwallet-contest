@@ -20,9 +20,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.husseinrasti.app.core.navigation.NavigateUp
 import com.husseinrasti.app.core.navigation.NavigationEvent
-import com.husseinrasti.app.component.ui.TonButton
-import com.husseinrasti.app.component.ui.TonLottieAnimation
-import com.husseinrasti.app.component.ui.TonTopAppBar
+import com.husseinrasti.app.component.ui.MyTonWalletButton
+import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
+import com.husseinrasti.app.component.ui.MyTonWalletTopAppBar
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.feature.create.ui.R
 import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
@@ -58,7 +58,7 @@ internal fun RecoveryPhraseRoute(
             doubleClickCounter = doubleClickCounter,
             onClickSkip = {
                 showAlert = false
-                onClickNavigation(CreateWalletRouter.TestPhrase)
+                onClickNavigation(CreateWalletRouter.PhraseTesting)
             },
             onClickOK = {
                 showAlert = false
@@ -77,7 +77,7 @@ internal fun RecoveryPhraseRoute(
         is RecoveryPhraseUiState.Success -> {
             RecoveryPhraseScreen(
                 onClickNavigation = { event ->
-                    if (event is CreateWalletRouter.TestPhrase
+                    if (event is CreateWalletRouter.PhraseTesting
                         && isTimeDiffOne(startTime, System.currentTimeMillis())
                     ) {
                         doubleClickCounter++
@@ -125,9 +125,9 @@ private fun RecoveryPhraseScreen(
         Body(
             scroll = scroll,
             phrases = phrases,
-            onClick = { onClickNavigation(CreateWalletRouter.TestPhrase) },
+            onClick = { onClickNavigation(CreateWalletRouter.PhraseTesting) },
         )
-        TonTopAppBar(
+        MyTonWalletTopAppBar(
             onClickNavigation = { onClickNavigation(NavigateUp) },
             elevation = 0.dp
         )
@@ -149,7 +149,7 @@ private fun Header(
             },
         contentAlignment = Alignment.Center,
     ) {
-        TonLottieAnimation(
+        MyTonWalletLottieAnimation(
             lottieCompositionSpec = LottieCompositionSpec.Asset("anim/recovery_phrase.json"),
             modifier = Modifier.size(128.dp)
         )
@@ -182,7 +182,7 @@ private fun Body(
         GridPhrases(phrases = phrases)
 
         Spacer(Modifier.height(32.dp))
-        TonButton(
+        MyTonWalletButton(
             text = stringResource(id = R.string.btn_done),
             onClick = onClick,
             contentPadding = PaddingValues(

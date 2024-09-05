@@ -12,7 +12,7 @@ import com.airbnb.lottie.compose.*
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 
 @Composable
-fun TonLottieAnimation(
+fun MyTonWalletLottieAnimation(
     lottieCompositionSpec: LottieCompositionSpec,
     modifier: Modifier = Modifier,
     isPlaying: Boolean = true,
@@ -35,7 +35,7 @@ fun TonLottieAnimation(
         composition = composition,
         progress = { progress },
         alignment = alignment,
-        contentScale = contentScale
+        contentScale = contentScale,
     )
 }
 
@@ -44,7 +44,7 @@ fun TonLottieAnimation(
 @Composable
 fun TonLottieAnimationPreview() {
     MyTonWalletContestTheme {
-        TonLottieAnimation(
+        MyTonWalletLottieAnimation(
             lottieCompositionSpec = LottieCompositionSpec.Asset("anim/start.json"),
             modifier = Modifier.size(256.dp)
         )

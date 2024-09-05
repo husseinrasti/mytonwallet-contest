@@ -11,7 +11,6 @@ import com.husseinrasti.app.feature.auth.ui.StartRoute
 
 const val authRoute = "auth_route"
 private const val authStartRoute = "auth_start_route"
-private const val authPasscodeRoute = "auth_passcode_route"
 
 
 fun NavController.navigateToAuth(navOptions: NavOptions? = null) {
@@ -24,13 +23,7 @@ fun NavGraphBuilder.authGraph(
 ) {
     navigation(startDestination = authStartRoute, route = authRoute) {
         composable(authStartRoute) {
-            StartRoute(onClickNavigation = {
-                if (it is AuthRouter.Passcode) {
-                    navController.navigate(authPasscodeRoute)
-                } else {
-                    onClickNavigation(it)
-                }
-            })
+            StartRoute(onClickNavigation = onClickNavigation)
         }
     }
 }

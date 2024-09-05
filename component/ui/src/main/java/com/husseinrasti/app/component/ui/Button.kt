@@ -19,13 +19,13 @@ import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 
 
 @Composable
-fun TonButton(
+fun MyTonWalletButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     enabled: Boolean = true,
     border: BorderStroke? = null,
     shape: Shape = MaterialTheme.shapes.medium,
-    colors: ButtonColors = TonButtonColors(
+    colors: ButtonColors = MyTonWalletButtonColors(
         backgroundColor = MaterialTheme.colors.secondaryVariant,
         contentColor = MaterialTheme.colors.primary,
         disabledBackgroundColor = MaterialTheme.colors.secondary
@@ -52,14 +52,14 @@ fun TonButton(
 }
 
 @Composable
-fun TonButton(
+fun MyTonWalletButton(
     text: String,
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     enabled: Boolean = true,
     border: BorderStroke? = null,
     shape: Shape = MaterialTheme.shapes.medium,
-    colors: ButtonColors = TonButtonColors(
+    colors: ButtonColors = MyTonWalletButtonColors(
         backgroundColor = MaterialTheme.colors.secondaryVariant,
         contentColor = MaterialTheme.colors.primary,
         disabledBackgroundColor = MaterialTheme.colors.secondary
@@ -72,7 +72,7 @@ fun TonButton(
         vertical = 8.dp
     ),
 ) {
-    TonButton(
+    MyTonWalletButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
@@ -93,7 +93,7 @@ fun TonButton(
 @Composable
 fun TonButtonPreview() {
     MyTonWalletContestTheme {
-        TonButton(text = "My Ton Wallet", onClick = {})
+        MyTonWalletButton(text = "MyTonWallet", onClick = {})
     }
 }
 
@@ -101,15 +101,15 @@ fun TonButtonPreview() {
 @Composable
 fun TonButtonPreviewDisable() {
     MyTonWalletContestTheme {
-        TonButton(
-            text = "My Ton Wallet", onClick = {},
+        MyTonWalletButton(
+            text = "MyTonWallet", onClick = {},
             enabled = false
         )
     }
 }
 
 @Immutable
-private class TonButtonColors(
+class MyTonWalletButtonColors(
     private val backgroundColor: Color,
     private val contentColor: Color,
     private val disabledBackgroundColor: Color,
@@ -129,7 +129,7 @@ private class TonButtonColors(
         if (this === other) return true
         if (other == null || this::class != other::class) return false
 
-        other as TonButtonColors
+        other as MyTonWalletButtonColors
 
         if (backgroundColor != other.backgroundColor) return false
         if (contentColor != other.contentColor) return false

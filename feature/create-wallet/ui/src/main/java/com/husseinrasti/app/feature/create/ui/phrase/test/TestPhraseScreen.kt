@@ -29,11 +29,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.husseinrasti.app.core.navigation.NavigateUp
 import com.husseinrasti.app.core.navigation.NavigationEvent
-import com.husseinrasti.app.component.ui.TonButton
-import com.husseinrasti.app.component.ui.TonLottieAnimation
-import com.husseinrasti.app.component.ui.TonSurface
-import com.husseinrasti.app.component.ui.TonTextField
-import com.husseinrasti.app.component.ui.TonTopAppBar
+import com.husseinrasti.app.component.ui.MyTonWalletButton
+import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
+import com.husseinrasti.app.component.ui.MyTonWalletSurface
+import com.husseinrasti.app.component.ui.MyTonWalletTextField
+import com.husseinrasti.app.component.ui.MyTonWalletTopAppBar
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.feature.create.ui.R
 import com.husseinrasti.app.feature.create.ui.phrase.model.EditTextState
@@ -99,7 +99,7 @@ private fun TestPhraseScaffoldScreen(
 ) {
     Scaffold(
         topBar = {
-            TonTopAppBar(
+            MyTonWalletTopAppBar(
                 onClickNavigation = { onClickNavigation(NavigateUp) },
                 elevation = 0.dp
             )
@@ -131,7 +131,7 @@ fun TestPhraseScreen(
     val num2 = randomNumbers.elementAt(1)
     val num3 = randomNumbers.elementAt(2)
 
-    TonSurface(
+    MyTonWalletSurface(
         modifier = modifier,
     ) {
         LazyColumn(
@@ -139,7 +139,7 @@ fun TestPhraseScreen(
             verticalArrangement = Arrangement.Center,
         ) {
             item {
-                TonLottieAnimation(
+                MyTonWalletLottieAnimation(
                     lottieCompositionSpec = LottieCompositionSpec.Asset("anim/test_time.json"),
                     modifier = Modifier.size(128.dp),
                 )
@@ -188,7 +188,7 @@ fun TestPhraseScreen(
 
             item {
                 Spacer(Modifier.height(24.dp))
-                TonButton(
+                MyTonWalletButton(
                     text = stringResource(id = R.string.btn_continue),
                     onClick = onClickContinue,
                 )
@@ -239,7 +239,7 @@ fun AutoCompleteTextField(
                 indexTextField = INDEX_ZERO,
             )
         }
-        TonTextField(
+        MyTonWalletTextField(
             modifier = Modifier
                 .focusRequester(focusNum1)
                 .constrainAs(textFieldOne) {
@@ -280,7 +280,7 @@ fun AutoCompleteTextField(
                 indexTextField = INDEX_ONE,
             )
         }
-        TonTextField(
+        MyTonWalletTextField(
             modifier = Modifier
                 .focusRequester(focusNum2)
                 .constrainAs(textFieldTwo) {
@@ -321,7 +321,7 @@ fun AutoCompleteTextField(
                 indexTextField = INDEX_TWO,
             )
         }
-        TonTextField(
+        MyTonWalletTextField(
             modifier = Modifier
                 .focusRequester(focusNum3)
                 .constrainAs(textFieldThree) {
@@ -354,7 +354,7 @@ private fun AutoCompletePhrases(
 ) {
     val scrollState: ScrollState = rememberScrollState(0)
 
-    TonSurface(
+    MyTonWalletSurface(
         modifier = modifier
             .wrapContentHeight(),
         elevation = 4.dp

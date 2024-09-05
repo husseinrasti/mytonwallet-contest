@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.husseinrasti.app.core.navigation.NavigateAuth
+import com.husseinrasti.app.core.navigation.NavigateToAuth
 import com.husseinrasti.app.core.navigation.NavigateUp
 import com.husseinrasti.app.core.navigation.NavigationEvent
 import com.husseinrasti.app.feature.auth.ui.navigation.authGraph
@@ -27,7 +27,7 @@ fun MyTonWalletNavHost(
 
     when (navigationEvent) {
         is NavigateUp -> dispatcher.onBackPressed()
-        is NavigateAuth -> navController.navigateToAuth()
+        is NavigateToAuth -> navController.navigateToAuth()
     }
 
     NavHost(

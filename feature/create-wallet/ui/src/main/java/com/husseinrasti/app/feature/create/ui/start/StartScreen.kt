@@ -1,6 +1,7 @@
 package com.husseinrasti.app.feature.create.ui.start
 
 import android.content.Context
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,13 +32,10 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.LottieConstants
 import kotlinx.coroutines.flow.collectLatest
-import com.husseinrasti.app.core.navigation.NavigateImportWallet
+import com.husseinrasti.app.core.navigation.NavigateToImportWallet
 import com.husseinrasti.app.core.navigation.NavigationEvent
-import com.husseinrasti.app.component.ui.TonButton
-import com.husseinrasti.app.component.ui.TonLottieAnimation
+import com.husseinrasti.app.component.ui.MyTonWalletButton
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.feature.create.ui.R
 import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
@@ -68,7 +67,7 @@ internal fun StartRoute(
                 }
 
                 StartUiState.Success -> {
-                    onClickNavigation(CreateWalletRouter.Congratulations)
+                    onClickNavigation(CreateWalletRouter.WalletCreation)
                 }
 
                 else -> {}
@@ -102,25 +101,25 @@ private fun StartScreen(
         ConstraintLayout(
             modifier = Modifier.fillMaxSize(),
         ) {
-            val (tonInfo, tonCreate) = createRefs()
+            val (appInfo) = createRefs()
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
-                modifier = Modifier.constrainAs(tonInfo) {
-                    top.linkTo(parent.top, margin = 32.dp)
+                modifier = Modifier.constrainAs(appInfo) {
+                    top.linkTo(parent.top)
                     end.linkTo(parent.end, margin = 16.dp)
                     start.linkTo(parent.start, margin = 16.dp)
-                    bottom.linkTo(tonCreate.top, margin = 16.dp)
+                    bottom.linkTo(parent.bottom, margin = 16.dp)
                 }
             ) {
-                TonLottieAnimation(
-                    lottieCompositionSpec = LottieCompositionSpec.Asset("anim/start.json"),
-                    modifier = Modifier.size(128.dp),
-                    restartOnPlay = true,
-                    iterations = LottieConstants.IterateForever,
-                )
 
+                Image(
+                    painter = painterResource(id = R.drawable.gem),
+                    contentDescription = "",
+                    modifier = Modifier.size(128.dp),
+                )
+                Spacer(Modifier.height(8.dp))
                 Text(
                     modifier = Modifier
                         .padding(
@@ -143,26 +142,20 @@ private fun StartScreen(
                     color = MaterialTheme.colors.onSurface,
                     style = MaterialTheme.typography.caption,
                 )
-            }
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.constrainAs(tonCreate) {
-                    top.linkTo(tonInfo.bottom)
-                    end.linkTo(parent.end, margin = 16.dp)
-                    start.linkTo(parent.start, margin = 16.dp)
-                    bottom.linkTo(parent.bottom)
-                }
-            ) {
-                TonButton(
+                MyTonWalletButton(
                     text = stringResource(id = R.string.btn_create_my_wallet),
-                    modifier = Modifier.padding(16.dp),
+                    modifier = Modifier.padding(
+                        top = 32.dp,
+                        start = 16.dp,
+                        end = 16.dp,
+                        bottom = 16.dp
+                    ),
                     onClick = onCreateWallet
                 )
 
                 TextButton(onClick = {
-                    onClickNavigation(NavigateImportWallet)
+                    onClickNavigation(NavigateToImportWallet)
                 }) {
                     Text(
                         text = stringResource(id = R.string.btn_import_existing_wallet),

@@ -19,11 +19,11 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.core.navigation.NavigateUp
 import com.husseinrasti.app.core.navigation.NavigationEvent
-import com.husseinrasti.app.component.ui.TonButton
-import com.husseinrasti.app.component.ui.TonLottieAnimation
-import com.husseinrasti.app.component.ui.TonSurface
-import com.husseinrasti.app.component.ui.TonTopAppBar
-import com.husseinrasti.app.feature.auth.ui.navigation.AuthRouter
+import com.husseinrasti.app.component.ui.MyTonWalletButton
+import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
+import com.husseinrasti.app.component.ui.MyTonWalletSurface
+import com.husseinrasti.app.component.ui.MyTonWalletTopAppBar
+import com.husseinrasti.app.core.navigation.NavigateToWallet
 
 
 @Composable
@@ -44,7 +44,7 @@ private fun StartScaffoldScreen(
 ) {
     Scaffold(
         topBar = {
-            TonTopAppBar(
+            MyTonWalletTopAppBar(
                 onClickNavigation = { onClickNavigation(NavigateUp) },
                 elevation = 0.dp
             )
@@ -65,7 +65,7 @@ private fun StartScreen(
 ) {
     var isChecked by remember { mutableStateOf(false) }
 
-    TonSurface(
+    MyTonWalletSurface(
         modifier = modifier,
     ) {
         ConstraintLayout(
@@ -83,7 +83,7 @@ private fun StartScreen(
                     bottom.linkTo(button.top, margin = 16.dp)
                 }
             ) {
-                TonLottieAnimation(
+                MyTonWalletLottieAnimation(
                     lottieCompositionSpec = LottieCompositionSpec.Asset("anim/success.json"),
                     modifier = Modifier.size(128.dp),
                 )
@@ -134,7 +134,7 @@ private fun StartScreen(
                 )
             }
 
-            TonButton(
+            MyTonWalletButton(
                 text = stringResource(id = R.string.btn_set_passcode),
                 modifier = Modifier.constrainAs(button) {
                     top.linkTo(container.bottom, margin = 32.dp)
@@ -142,7 +142,7 @@ private fun StartScreen(
                     start.linkTo(parent.start, margin = 16.dp)
                     bottom.linkTo(parent.bottom, margin = 32.dp)
                 },
-                onClick = { onClickNavigation(AuthRouter.Passcode) }
+                onClick = { onClickNavigation(NavigateToWallet) }
             )
 
         }

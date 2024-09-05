@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 
 @Composable
-fun TonTextField(
+fun MyTonWalletTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -73,9 +73,9 @@ fun TonTextField(
 
 @Preview
 @Composable
-private fun TonTextFieldPreview() {
+private fun MyTonWalletTextFieldPreview() {
     MyTonWalletContestTheme {
-        TonTextField(
+        MyTonWalletTextField(
             value = "Test",
             onValueChange = {},
             label = {

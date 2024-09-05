@@ -24,7 +24,7 @@ import kotlin.math.ln
  * An alternative to [androidx.compose.material.Surface] utilizing
  */
 @Composable
-fun TonSurface(
+fun MyTonWalletSurface(
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
     color: Color = MaterialTheme.colors.background,

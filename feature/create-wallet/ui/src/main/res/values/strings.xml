@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_ton_wallet">My Ton Wallet</string>
-    <string name="desc_ton_wallet">My Ton Wallet allows you to make fast and secure blockchain-based payments without intermediaries.</string>
-    <string name="btn_create_my_wallet">Create my wallet</string>
-    <string name="btn_import_existing_wallet">Import existing wallet</string>
+    <string name="title_ton_wallet">MyTonWallet</string>
+    <string name="desc_ton_wallet">Securely store and send crypto.</string>
+    <string name="btn_create_my_wallet">Create New Wallet</string>
+    <string name="btn_import_existing_wallet">Import Existing Wallet</string>
 
     <string name="title_congratulations">Congratulations</string>
     <string name="desc_congratulations">
-        Your My Ton Wallet has just been created.
+        Your MyTonWallet has just been created.
         \n
         Only you control it.
         \n\n
         To be able to always have access to it, please write down secret words and set up a secure passcode.
     </string>
+    <string name="title_wallet_created">Wallet created</string>
+    <string name="btn_setup_passcode">Set Up Passcode</string>
+    <string name="desc_wallet_created">Create a passcode to protect it.</string>
     <string name="btn_proceed">Proceed</string>
     <string name="title_your_recovery_phrase">Your Recovery Phrase</string>
-    <string name="desc_your_recovery_phrase">Write down these 24 words in this exact order and keep them in a secure place. Do not share this list with anyone. If you lose it, you will irrevocably lose access to your TON account.</string>
+    <string name="desc_your_recovery_phrase">Write down these 24 words in this exact order and keep them in a secure place. Do not share this list with anyone.</string>
     <string name="btn_done">Done</string>
     <string name="btn_skip">Skip</string>
     <string name="btn_ok_sorry">OK. sorry</string>
@@ -28,4 +31,12 @@
     <string name="btn_try_again">Try again</string>
     <string name="title_incorrect_words">Incorrect words</string>
     <string name="msg_incorrect_words">The secret words you have entered\ndo not match the ones in the list.</string>
+    <string name="title_set_passcode">Set passcode</string>
+    <string name="desc_set_passcode_4_digits">Enter the 4 digits in the passcode.</string>
+    <string name="desc_set_passcode_6_digits">Enter the 6 digits in the passcode.</string>
+    <string name="btn_use_4_digits">Use 4-Digit Passcode</string>
+    <string name="btn_use_6_digits">Use 6-Digit Passcode</string>
+    <string name="btn_enable">Enable</string>
+    <string name="title_use_biometrics">Use Biometrics?</string>
+    <string name="desc_use_biometrics">MyTonWallet uses biometric authentication to unlock and authorize transactions.</string>
 </resources>
