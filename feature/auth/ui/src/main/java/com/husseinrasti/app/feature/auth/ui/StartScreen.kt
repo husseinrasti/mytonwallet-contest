@@ -17,13 +17,13 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
-import com.husseinrasti.app.core.navigation.NavigateUp
-import com.husseinrasti.app.core.navigation.NavigationEvent
+import com.husseinrasti.app.component.navigation.NavigateUp
+import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.component.ui.MyTonWalletButton
 import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
 import com.husseinrasti.app.component.ui.MyTonWalletSurface
 import com.husseinrasti.app.component.ui.MyTonWalletTopAppBar
-import com.husseinrasti.app.core.navigation.NavigateToWallet
+import com.husseinrasti.app.component.navigation.NavigateToWallet
 
 
 @Composable

@@ -1,5 +1,7 @@
 package com.husseinrasti.app.feature.create.domain.di
 
+import com.husseinrasti.app.feature.create.domain.usecase.CheckRecoveryPhrasesUseCase
+import com.husseinrasti.app.feature.create.domain.usecase.CheckRecoveryPhrasesUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,5 +35,11 @@ interface CreateWalletUseCaseModule {
     fun provideGetPhrasesUseCase(
         getPhrasesUseCaseImpl: GetPhrasesUseCaseImpl
     ): GetPhrasesUseCase
+
+    @Binds
+    @ViewModelScoped
+    fun provideCheckRecoveryPhrasesUseCase(
+        checkRecoveryPhrasesUseCaseImpl: CheckRecoveryPhrasesUseCaseImpl
+    ): CheckRecoveryPhrasesUseCase
 
 }

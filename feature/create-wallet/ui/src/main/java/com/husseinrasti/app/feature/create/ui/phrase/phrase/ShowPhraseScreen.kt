@@ -18,8 +18,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.husseinrasti.app.core.navigation.NavigateUp
-import com.husseinrasti.app.core.navigation.NavigationEvent
+import com.husseinrasti.app.component.navigation.NavigateUp
+import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.component.ui.MyTonWalletButton
 import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
 import com.husseinrasti.app.component.ui.MyTonWalletTopAppBar

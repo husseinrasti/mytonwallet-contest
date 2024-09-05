@@ -33,8 +33,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.flow.collectLatest
-import com.husseinrasti.app.core.navigation.NavigateToImportWallet
-import com.husseinrasti.app.core.navigation.NavigationEvent
+import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.component.ui.MyTonWalletButton
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.feature.create.ui.R
@@ -155,7 +154,7 @@ private fun StartScreen(
                 )
 
                 TextButton(onClick = {
-                    onClickNavigation(NavigateToImportWallet)
+                    onClickNavigation(CreateWalletRouter.PhraseRecovery)
                 }) {
                     Text(
                         text = stringResource(id = R.string.btn_import_existing_wallet),

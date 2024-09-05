@@ -6,9 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.husseinrasti.app.core.navigation.NavigateToAuth
-import com.husseinrasti.app.core.navigation.NavigateUp
-import com.husseinrasti.app.core.navigation.NavigationEvent
+import com.husseinrasti.app.component.navigation.NavigateToAuth
+import com.husseinrasti.app.component.navigation.NavigateUp
+import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.feature.auth.ui.navigation.authGraph
 import com.husseinrasti.app.feature.auth.ui.navigation.navigateToAuth
 import com.husseinrasti.app.feature.create.ui.navigation.createWalletGraph

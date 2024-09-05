@@ -39,4 +39,9 @@
     <string name="btn_enable">Enable</string>
     <string name="title_use_biometrics">Use Biometrics?</string>
     <string name="desc_use_biometrics">MyTonWallet uses biometric authentication to unlock and authorize transactions.</string>
+    <string name="title_import_wallet">Import wallet</string>
+    <string name="desc_import_wallet">You can restore access to your wallet by entering the 24 secret words that you wrote down when creating the wallet.</string>
+    <string name="title_wrong_phrase">Wrong phrase</string>
+    <string name="msg_wrong_phrase">Looks like you entered an invalid mnemonic phrase.</string>
+    <string name="btn_close">Close</string>
 </resources>

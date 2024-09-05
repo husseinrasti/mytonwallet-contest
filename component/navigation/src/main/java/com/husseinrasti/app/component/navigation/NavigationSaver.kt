@@ -1,4 +1,4 @@
-package com.husseinrasti.app.core.navigation
+package com.husseinrasti.app.component.navigation
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

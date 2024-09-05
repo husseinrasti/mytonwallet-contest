@@ -35,8 +35,8 @@ import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
 import com.husseinrasti.app.component.ui.MyTonWalletSurface
 import com.husseinrasti.app.component.ui.MyTonWalletTopAppBar
 import com.husseinrasti.app.component.ui.PasscodeInput
-import com.husseinrasti.app.core.navigation.NavigateUp
-import com.husseinrasti.app.core.navigation.NavigationEvent
+import com.husseinrasti.app.component.navigation.NavigateUp
+import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.feature.create.ui.R
 import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
 import kotlinx.coroutines.delay
