@@ -8,6 +8,7 @@ android {
 
 dependencies {
     implementation(project(":component:ui"))
+    implementation(project(":component:theme"))
     implementation(project(":component:navigation"))
     implementation(project(":core:dagger-hilt"))
     implementation(project(":core:datastore"))

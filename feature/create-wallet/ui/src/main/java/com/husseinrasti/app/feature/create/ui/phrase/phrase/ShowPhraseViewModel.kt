@@ -1,4 +1,4 @@
-package com.husseinrasti.app.feature.create.ui.phrase.recovery
+package com.husseinrasti.app.feature.create.ui.phrase.phrase
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,11 +9,11 @@ import com.husseinrasti.app.feature.create.domain.usecase.GetPhrasesUseCase
 import javax.inject.Inject
 
 @HiltViewModel
-class RecoveryPhraseViewModel @Inject constructor(
+class ShowPhraseViewModel @Inject constructor(
     private val getPhrasesUseCase: GetPhrasesUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<RecoveryPhraseUiState>(RecoveryPhraseUiState.Loading)
+    private val _uiState = MutableStateFlow<ShowPhraseUiState>(ShowPhraseUiState.Loading)
     val uiState = _uiState.asStateFlow()
 
     init {
@@ -24,10 +24,10 @@ class RecoveryPhraseViewModel @Inject constructor(
         viewModelScope.launch {
             getPhrasesUseCase().fold(
                 onSuccess = { phrases ->
-                    _uiState.update { RecoveryPhraseUiState.Success(phrases) }
+                    _uiState.update { ShowPhraseUiState.Success(phrases) }
                 },
                 onFailure = {
-                    _uiState.update { RecoveryPhraseUiState.Error }
+                    _uiState.update { ShowPhraseUiState.Error }
                 }
             )
         }
@@ -36,8 +36,8 @@ class RecoveryPhraseViewModel @Inject constructor(
 }
 
 
-sealed interface RecoveryPhraseUiState {
-    data object Loading : RecoveryPhraseUiState
-    data object Error : RecoveryPhraseUiState
-    data class Success(val phrases: List<String>) : RecoveryPhraseUiState
+sealed interface ShowPhraseUiState {
+    data object Loading : ShowPhraseUiState
+    data object Error : ShowPhraseUiState
+    data class Success(val phrases: List<String>) : ShowPhraseUiState
 }

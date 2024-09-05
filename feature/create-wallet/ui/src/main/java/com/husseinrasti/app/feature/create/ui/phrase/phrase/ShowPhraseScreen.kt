@@ -1,4 +1,4 @@
-package com.husseinrasti.app.feature.create.ui.phrase.recovery
+package com.husseinrasti.app.feature.create.ui.phrase.phrase
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -31,31 +31,29 @@ import com.husseinrasti.app.feature.create.ui.util.isTimeDiffOne
 
 private const val DEFAULT_COLUMN_COUNT = 2
 private const val TITLE_FONT_SCALE_STARE = 1f
-private const val TITLE_FONT_SCALE_END = 0.66f
+private const val TITLE_FONT_SCALE_END = 0.5f
 
 private val headerHeight = 250.dp
 private val toolbarHeight = 56.dp
 
 private val paddingMedium = 16.dp
 
-private val titlePaddingStart = 16.dp
+private val titlePaddingStart = 0.dp
 private val titlePaddingEnd = 72.dp
 
 
 @Composable
-internal fun RecoveryPhraseRoute(
+internal fun ShowPhraseRoute(
     onClickNavigation: (NavigationEvent) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: RecoveryPhraseViewModel = hiltViewModel(),
+    viewModel: ShowPhraseViewModel = hiltViewModel(),
 ) {
 
     var showAlert by remember { mutableStateOf(false) }
     val startTime by rememberSaveable { mutableStateOf(System.currentTimeMillis()) }
-    var doubleClickCounter by remember { mutableStateOf(0) }
 
     if (showAlert) {
         PhraseAlertDialog(
-            doubleClickCounter = doubleClickCounter,
             onClickSkip = {
                 showAlert = false
                 onClickNavigation(CreateWalletRouter.PhraseTesting)
@@ -74,24 +72,23 @@ internal fun RecoveryPhraseRoute(
     )
 
     when (uiState) {
-        is RecoveryPhraseUiState.Success -> {
-            RecoveryPhraseScreen(
+        is ShowPhraseUiState.Success -> {
+            ShowPhraseScreen(
                 onClickNavigation = { event ->
                     if (event is CreateWalletRouter.PhraseTesting
                         && isTimeDiffOne(startTime, System.currentTimeMillis())
                     ) {
-                        doubleClickCounter++
                         showAlert = true
                     } else {
-                        onClickNavigation(event)
+                        onClickNavigation(CreateWalletRouter.PhraseTesting)
                     }
                 },
                 modifier = modifier,
-                phrases = (uiState as RecoveryPhraseUiState.Success).phrases,
+                phrases = (uiState as ShowPhraseUiState.Success).phrases,
             )
         }
 
-        RecoveryPhraseUiState.Loading -> {
+        ShowPhraseUiState.Loading -> {
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier.fillMaxSize()
@@ -100,12 +97,12 @@ internal fun RecoveryPhraseRoute(
             }
         }
 
-        RecoveryPhraseUiState.Error -> {}
+        ShowPhraseUiState.Error -> {}
     }
 }
 
 @Composable
-private fun RecoveryPhraseScreen(
+private fun ShowPhraseScreen(
     onClickNavigation: (NavigationEvent) -> Unit,
     modifier: Modifier = Modifier,
     phrases: List<String>,
@@ -144,7 +141,7 @@ private fun Header(
     Box(
         modifier = modifier
             .graphicsLayer {
-                translationY = -scroll.value.toFloat() / 2f // Parallax effect
+                translationY = -scroll.value.toFloat() / 1.2f // Parallax effect
                 alpha = (-1f / headerHeightPx) * scroll.value + 1
             },
         contentAlignment = Alignment.Center,
@@ -325,7 +322,6 @@ private fun Title(
 
 @Composable
 private fun PhraseAlertDialog(
-    doubleClickCounter: Int,
     onDismissRequest: () -> Unit,
     onClickSkip: () -> Unit,
     onClickOK: () -> Unit,
@@ -338,16 +334,14 @@ private fun PhraseAlertDialog(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.End
             ) {
-                if (doubleClickCounter >= 2) {
-                    TextButton(onClick = onClickSkip) {
-                        Text(
-                            text = stringResource(id = R.string.btn_skip),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(16.dp),
-                            color = MaterialTheme.colors.secondaryVariant,
-                            style = MaterialTheme.typography.button,
-                        )
-                    }
+                TextButton(onClick = onClickSkip) {
+                    Text(
+                        text = stringResource(id = R.string.btn_skip),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(16.dp),
+                        color = MaterialTheme.colors.secondaryVariant,
+                        style = MaterialTheme.typography.button,
+                    )
                 }
                 TextButton(onClick = onClickOK) {
                     Text(
@@ -381,9 +375,9 @@ private fun PhraseAlertDialog(
 
 @Preview
 @Composable
-private fun RecoveryPhrasePreview() {
+private fun ShowPhrasePreview() {
     MyTonWalletContestTheme {
-        RecoveryPhraseScreen(
+        ShowPhraseScreen(
             onClickNavigation = {},
             phrases = fakePhrases
         )
@@ -395,7 +389,6 @@ private fun RecoveryPhrasePreview() {
 private fun PhraseAlertDialogPreview() {
     MyTonWalletContestTheme {
         PhraseAlertDialog(
-            doubleClickCounter = 2,
             onClickSkip = {},
             onClickOK = {},
             onDismissRequest = {}
