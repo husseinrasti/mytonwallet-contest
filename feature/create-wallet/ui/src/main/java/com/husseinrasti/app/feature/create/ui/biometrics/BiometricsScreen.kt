@@ -44,6 +44,8 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
+import com.husseinrasti.app.core.security.biometric.BiometricPromptManager
+import com.husseinrasti.app.core.security.biometric.findActivity
 
 @Composable
 internal fun BiometricsRoute(
@@ -191,13 +193,4 @@ fun BiometricsScreen(onClickNavigation: (NavigationEvent) -> Unit, modifier: Mod
         }
 
     }
-}
-
-fun Context.findActivity(): AppCompatActivity {
-    var context = this
-    while (context is ContextWrapper) {
-        if (context is AppCompatActivity) return context
-        context = context.baseContext
-    }
-    throw IllegalStateException("no activity")
 }

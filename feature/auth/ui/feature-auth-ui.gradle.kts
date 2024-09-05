@@ -8,6 +8,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:security"))
     implementation(project(":component:ui"))
     implementation(project(":component:theme"))
     implementation(project(":component:navigation"))

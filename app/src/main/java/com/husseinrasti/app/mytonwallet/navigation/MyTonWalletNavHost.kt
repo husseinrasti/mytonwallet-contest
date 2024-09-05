@@ -7,18 +7,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.husseinrasti.app.component.navigation.NavigateToAuth
+import com.husseinrasti.app.component.navigation.NavigateToCreateWallet
 import com.husseinrasti.app.component.navigation.NavigateUp
 import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.feature.auth.ui.navigation.authGraph
 import com.husseinrasti.app.feature.auth.ui.navigation.navigateToAuth
 import com.husseinrasti.app.feature.create.ui.navigation.createWalletGraph
-import com.husseinrasti.app.feature.create.ui.navigation.createWalletRoute
+import com.husseinrasti.app.feature.create.ui.navigation.navigateToCreateWallet
 
 @Composable
 fun MyTonWalletNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = createWalletRoute,
+    startDestination: String = authGraph,
 ) {
 
     var navigationEvent: NavigationEvent by remember { mutableStateOf(NavigationEvent.Idle) }
@@ -28,6 +29,7 @@ fun MyTonWalletNavHost(
     when (navigationEvent) {
         is NavigateUp -> dispatcher.onBackPressed()
         is NavigateToAuth -> navController.navigateToAuth()
+        is NavigateToCreateWallet -> navController.navigateToCreateWallet()
     }
 
     NavHost(

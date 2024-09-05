@@ -12,7 +12,7 @@ import com.husseinrasti.app.feature.create.ui.phrase.recovery.RecoveryPhraseRout
 import com.husseinrasti.app.feature.create.ui.phrase.test.TestPhraseRoute
 import com.husseinrasti.app.feature.create.ui.start.StartRoute
 
-const val createWalletRoute = "create_wallet_route"
+const val createWalletGraph = "create_wallet_graph"
 private const val startScreenRoute = "start_screen_route"
 private const val walletCreatedScreenRoute = "wallet_created_route"
 private const val showPhraseScreenRoute = "show_phrase_screen_route"
@@ -22,14 +22,14 @@ private const val passcodeScreenRoute = "passcode_screen_route"
 private const val biometricScreenRoute = "biometric_screen_route"
 
 fun NavController.navigateToCreateWallet(navOptions: NavOptions? = null) {
-    this.navigate(createWalletRoute, navOptions)
+    this.navigate(createWalletGraph, navOptions)
 }
 
 fun NavGraphBuilder.createWalletGraph(
     navController: NavController,
     onClickNavigation: (NavigationEvent) -> Unit
 ) {
-    navigation(startDestination = startScreenRoute, route = createWalletRoute) {
+    navigation(startDestination = startScreenRoute, route = createWalletGraph) {
         composable(route = startScreenRoute) {
             StartRoute(onClickNavigation = { event ->
                 onNavigateByEvent(

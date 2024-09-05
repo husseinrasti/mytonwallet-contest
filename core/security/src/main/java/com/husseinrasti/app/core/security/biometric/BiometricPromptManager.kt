@@ -1,5 +1,7 @@
-package com.husseinrasti.app.feature.create.ui.biometrics
+package com.husseinrasti.app.core.security.biometric
 
+import android.content.Context
+import android.content.ContextWrapper
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
@@ -83,4 +85,13 @@ class BiometricPromptManager(
         data object AuthenticationSuccess : BiometricResult
         data object AuthenticationNotSet : BiometricResult
     }
+}
+
+fun Context.findActivity(): AppCompatActivity {
+    var context = this
+    while (context is ContextWrapper) {
+        if (context is AppCompatActivity) return context
+        context = context.baseContext
+    }
+    throw IllegalStateException("no activity")
 }

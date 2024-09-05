@@ -2,7 +2,6 @@ package com.husseinrasti.app.component.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
@@ -16,6 +15,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -28,7 +28,12 @@ fun PasscodeInput(
     passcodeCount: Int,
     onPasscodeTextChange: (String, Boolean) -> Unit,
     onFocusChanged: (FocusState) -> Unit,
-    focusRequester: FocusRequester
+    focusRequester: FocusRequester = FocusRequester.Default,
+    colorBox: ColorBox = ColorBox(
+        fill = MaterialTheme.colors.secondary,
+        empty = MaterialTheme.colors.primary,
+        border = MaterialTheme.colors.secondary,
+    )
 ) {
     LaunchedEffect(Unit) {
         if (passcode.length > passcodeCount) {
@@ -52,7 +57,8 @@ fun PasscodeInput(
                 repeat(passcodeCount) { index ->
                     BoxView(
                         index = index,
-                        text = passcode
+                        text = passcode,
+                        colorBox = colorBox
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                 }
@@ -64,7 +70,8 @@ fun PasscodeInput(
 @Composable
 private fun BoxView(
     index: Int,
-    text: String
+    text: String,
+    colorBox: ColorBox,
 ) {
     val char = when {
         index == text.length -> ""
@@ -73,18 +80,24 @@ private fun BoxView(
     }
     Box(
         modifier = Modifier
-            .size(24.dp)
+            .size(16.dp)
             .clip(CircleShape)
             .background(
-                if (char.isEmpty()) MaterialTheme.colors.primary
-                else MaterialTheme.colors.secondary
+                if (char.isEmpty()) colorBox.empty
+                else colorBox.fill
             )
             .border(
                 1.dp,
-                MaterialTheme.colors.secondary,
+                colorBox.border,
                 CircleShape
             )
             .padding(2.dp)
 
     )
 }
+
+data class ColorBox(
+    val fill: Color,
+    val empty: Color,
+    val border: Color,
+)
