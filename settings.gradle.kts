@@ -35,6 +35,9 @@ include(":feature:create-wallet:domain")
 include(":feature:auth:ui")
 include(":feature:auth:data")
 include(":feature:auth:domain")
+include(":feature:wallet:data")
+include(":feature:wallet:domain")
+include(":feature:wallet:ui")
 
 fun renameBuildFileName(name: String, project: ProjectDescriptor) {
     if (project.children.isEmpty()) {

@@ -19,4 +19,7 @@ dependencies {
     implementation(project(":feature:auth:ui"))
     implementation(project(":feature:auth:data"))
     implementation(project(":feature:auth:domain"))
+    implementation(project(":feature:wallet:ui"))
+    implementation(project(":feature:wallet:data"))
+    implementation(project(":feature:wallet:domain"))
 }
