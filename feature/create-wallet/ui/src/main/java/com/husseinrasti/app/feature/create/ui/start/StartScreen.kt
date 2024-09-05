@@ -32,10 +32,12 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.airbnb.lottie.compose.LottieCompositionSpec
 import kotlinx.coroutines.flow.collectLatest
 import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.component.ui.MyTonWalletButton
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
+import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
 import com.husseinrasti.app.feature.create.ui.R
 import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
 
@@ -113,9 +115,8 @@ private fun StartScreen(
                 }
             ) {
 
-                Image(
-                    painter = painterResource(id = R.drawable.gem),
-                    contentDescription = "",
+                MyTonWalletLottieAnimation(
+                    lottieCompositionSpec = LottieCompositionSpec.Asset("anim/main.json"),
                     modifier = Modifier.size(128.dp),
                 )
                 Spacer(Modifier.height(8.dp))
@@ -190,7 +191,7 @@ private fun ProgressDialog(onDismissRequest: () -> Unit) {
                 )
         ) {
             CircularProgressIndicator(
-                color = MaterialTheme.colors.onSurface
+                color = MaterialTheme.colors.secondaryVariant
             )
         }
     }

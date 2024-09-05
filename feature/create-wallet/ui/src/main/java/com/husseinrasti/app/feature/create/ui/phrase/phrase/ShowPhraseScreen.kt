@@ -93,7 +93,9 @@ internal fun ShowPhraseRoute(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier.fillMaxSize()
             ) {
-                CircularProgressIndicator()
+                CircularProgressIndicator(
+                    color = MaterialTheme.colors.secondaryVariant
+                )
             }
         }
 

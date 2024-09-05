@@ -2,6 +2,7 @@ package com.husseinrasti.app.feature.wallet.ui.wallet
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.husseinrasti.app.feature.wallet.domain.entity.WalletEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -22,8 +23,18 @@ class WalletViewModel @Inject constructor(
     private fun getWallet() {
         viewModelScope.launch {
             _uiState.emit(WalletUiState.Loading)
-            delay(1000)
-            _uiState.emit(WalletUiState.Success("Wallet"))
+            delay(3000)
+            _uiState.emit(
+                WalletUiState.Success(
+                    WalletEntity(
+                        name = "MyTonWallet",
+                        balance = "0",
+                        symbol = "$",
+                        tokens = listOf(),
+                        transactions = listOf()
+                    )
+                )
+            )
         }
     }
 
@@ -33,5 +44,5 @@ class WalletViewModel @Inject constructor(
 sealed interface WalletUiState {
     data object Loading : WalletUiState
     data object Error : WalletUiState
-    data class Success(val title: String) : WalletUiState
+    data class Success(val wallet: WalletEntity) : WalletUiState
 }

@@ -14,7 +14,9 @@ fun BottomNavigationBar(bottomNavigationItems: List<BottomNavigationItem>, navCo
         mutableStateOf(0)
     }
 
-    NavigationBar {
+    NavigationBar(
+        containerColor = MaterialTheme.colors.primary
+    ) {
         // looping over each tab to generate the views and navigation for each item
         bottomNavigationItems.forEachIndexed { index, tabBarItem ->
             NavigationBarItem(
@@ -31,7 +33,13 @@ fun BottomNavigationBar(bottomNavigationItems: List<BottomNavigationItem>, navCo
                         badgeAmount = tabBarItem.badgeAmount
                     )
                 },
-                label = { Text(tabBarItem.title) })
+                label = {
+                    Text(
+                        tabBarItem.title,
+                        color = if (selectedTabIndex == index) MaterialTheme.colors.secondaryVariant
+                        else MaterialTheme.colors.onSurface
+                    )
+                })
         }
     }
 }
@@ -46,7 +54,9 @@ fun TabBarIconView(
     BadgedBox(badge = { TabBarBadgeView(badgeAmount) }) {
         Icon(
             imageVector = icon,
-            contentDescription = title
+            contentDescription = title,
+            tint = if (isSelected) MaterialTheme.colors.secondaryVariant.copy(alpha = LocalContentAlpha.current)
+            else MaterialTheme.colors.onSurface.copy(alpha = LocalContentAlpha.current)
         )
     }
 }
