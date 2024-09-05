@@ -3,6 +3,7 @@ package com.husseinrasti.app.feature.create.ui.navigation
 import androidx.navigation.*
 import androidx.navigation.compose.composable
 import com.husseinrasti.app.core.navigation.NavigationEvent
+import com.husseinrasti.app.feature.create.ui.biometrics.BiometricsRoute
 import com.husseinrasti.app.feature.create.ui.creation.WalletCreatedRoute
 import com.husseinrasti.app.feature.create.ui.passcode.PasscodeRoute
 import com.husseinrasti.app.feature.create.ui.phrase.recovery.RecoveryPhraseRoute
@@ -14,7 +15,8 @@ private const val startScreenRoute = "start_screen_route"
 private const val walletCreatedScreenRoute = "wallet_created_route"
 private const val generatePhraseScreenRoute = "generate_phrase_screen_route"
 private const val testPhraseScreenRoute = "test_phrase_screen_route"
-private const val passcodeScreenRoute = "passcode_route"
+private const val passcodeScreenRoute = "passcode_screen_route"
+private const val biometricScreenRoute = "biometric_screen_route"
 
 fun NavController.navigateToCreateWallet(navOptions: NavOptions? = null) {
     this.navigate(createWalletRoute, navOptions)
@@ -70,6 +72,15 @@ fun NavGraphBuilder.createWalletGraph(
                 )
             })
         }
+        composable(biometricScreenRoute) {
+            BiometricsRoute(onClickNavigation = { event ->
+                onNavigateByEvent(
+                    event = event,
+                    onClickNavigation = onClickNavigation,
+                    navController = navController
+                )
+            })
+        }
     }
 }
 
@@ -87,6 +98,9 @@ private fun onNavigateByEvent(
 
         is CreateWalletRouter.Passcode ->
             navController.navigate(passcodeScreenRoute)
+
+        is CreateWalletRouter.Biometric ->
+            navController.navigate(biometricScreenRoute)
 
         is CreateWalletRouter.WalletCreation ->
             navController.navigate(walletCreatedScreenRoute)

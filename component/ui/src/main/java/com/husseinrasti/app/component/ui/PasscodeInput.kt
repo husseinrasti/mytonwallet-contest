@@ -2,6 +2,7 @@ package com.husseinrasti.app.component.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
@@ -11,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.FocusState
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -24,7 +27,8 @@ fun PasscodeInput(
     passcode: String,
     passcodeCount: Int,
     onPasscodeTextChange: (String, Boolean) -> Unit,
-    onFocusChanged: (FocusState) -> Unit
+    onFocusChanged: (FocusState) -> Unit,
+    focusRequester: FocusRequester
 ) {
     LaunchedEffect(Unit) {
         if (passcode.length > passcodeCount) {
@@ -33,7 +37,9 @@ fun PasscodeInput(
     }
 
     BasicTextField(
-        modifier = modifier.onFocusChanged(onFocusChanged),
+        modifier = modifier
+            .onFocusChanged(onFocusChanged)
+            .focusRequester(focusRequester),
         value = TextFieldValue(passcode, selection = TextRange(passcode.length)),
         onValueChange = {
             if (it.text.length <= passcodeCount) {

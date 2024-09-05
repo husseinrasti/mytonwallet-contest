@@ -7,4 +7,5 @@ sealed interface CreateWalletRouter : NavigationEvent {
     data object PhraseShowing : CreateWalletRouter
     data object PhraseTesting : CreateWalletRouter
     data object Passcode : CreateWalletRouter
+    data object Biometric : CreateWalletRouter
 }
