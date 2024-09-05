@@ -10,7 +10,7 @@ import com.husseinrasti.app.feature.auth.ui.AuthScreenRoute
 
 
 const val authGraph = "auth_graph"
-const val authScreenRoute = "auth_screen_route"
+private const val authScreenRoute = "auth_screen_route"
 
 
 fun NavController.navigateToAuth(navOptions: NavOptions? = null) {

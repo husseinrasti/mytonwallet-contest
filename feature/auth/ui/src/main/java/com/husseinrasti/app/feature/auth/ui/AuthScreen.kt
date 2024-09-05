@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.husseinrasti.app.component.navigation.NavigateToWallet
+import com.husseinrasti.app.component.navigation.NavigateToMain
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.component.ui.ColorBox
@@ -122,7 +122,7 @@ private fun AuthScreen(
 
             BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
                 //todo save biometric
-                onClickNavigation(NavigateToWallet)
+                onClickNavigation(NavigateToMain)
             }
 
             BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
@@ -163,7 +163,7 @@ private fun AuthScreen(
                     onPasscodeTextChange = { code, isFill ->
                         passcode = code
                         if (isFill) {
-                            onClickNavigation(NavigateToWallet)
+                            onClickNavigation(NavigateToMain)
                         }
                     },
                     onFocusChanged = {},

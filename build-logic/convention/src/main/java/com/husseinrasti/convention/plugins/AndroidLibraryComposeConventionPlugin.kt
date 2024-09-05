@@ -47,6 +47,7 @@ class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
                 add("implementation", findLibrary("androidx.constraintlayout.compose"))
                 add("implementation", findLibrary("androidx.lifecycle.runtimeCompose"))
                 add("implementation", findLibrary("androidx.lifecycle.viewModelCompose"))
+                add("implementation", findLibrary("androidx.navigation.compose"))
                 add("implementation", findLibrary("lottie.compose"))
                 add("debugImplementation", findLibrary("androidx.ui.tooling"))
                 add("debugImplementation", findLibrary("androidx.ui.test.manifest"))
