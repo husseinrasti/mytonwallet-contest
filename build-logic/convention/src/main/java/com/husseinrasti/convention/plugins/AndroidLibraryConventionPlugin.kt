@@ -37,6 +37,8 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 add("implementation", findLibrary("kotlinx.coroutines.android"))
                 add("implementation", findLibrary("google.gson"))
                 add("implementation", findLibrary("androidx.biometric"))
+                add("implementation", findLibrary("androidx.activity.ktx"))
+                add("implementation", findLibrary("androidx.appcompat"))
                 add("implementation", findLibrary("androidx.dataStore.core"))
                 add("implementation", findLibrary("androidx.dataStore.preferences"))
                 add("implementation", findLibrary("androidx.security.crypto"))

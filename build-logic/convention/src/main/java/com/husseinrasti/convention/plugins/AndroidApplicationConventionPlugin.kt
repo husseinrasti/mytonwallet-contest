@@ -34,6 +34,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 add("implementation", platform(findLibrary("androidx-compose-bom")))
                 add("androidTestImplementation", platform(findLibrary("androidx-compose-bom")))
                 add("implementation", findLibrary("coil.kt"))
+                add("implementation", findLibrary("androidx.activity.ktx"))
+                add("implementation", findLibrary("androidx.appcompat"))
                 add("implementation", findLibrary("coil.kt.compose"))
                 add("implementation", findLibrary("androidx.core.ktx"))
                 add("implementation", findLibrary("androidx.hilt.navigation.compose"))

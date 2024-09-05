@@ -12,7 +12,7 @@ appcompat = "1.7.0"
 material = "1.12.0"
 accompanist = "0.28.0"
 androidDesugarJdkLibs = "2.1.1"
-androidxActivity = "1.6.1"
+androidxActivity = "1.9.0"
 androidxAppCompat = "1.5.1"
 androidxBrowser = "1.8.0"
 androidxComposeBom = "2023.03.00"
@@ -76,6 +76,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-biometric = { group = "androidx.biometric", name = "biometric-ktx", version.ref = "biometric" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidxActivity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }

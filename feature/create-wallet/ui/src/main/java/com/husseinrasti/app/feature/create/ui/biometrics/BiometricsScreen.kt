@@ -1,5 +1,12 @@
 package com.husseinrasti.app.feature.create.ui.biometrics
 
+import android.content.Context
+import android.content.ContextWrapper
+import android.content.Intent
+import android.os.Build
+import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,6 +20,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -30,7 +39,11 @@ import com.husseinrasti.app.core.navigation.NavigateUp
 import com.husseinrasti.app.core.navigation.NavigationEvent
 import com.husseinrasti.app.feature.create.ui.R
 import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
+import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 
 @Composable
 internal fun BiometricsRoute(
@@ -69,6 +82,60 @@ fun BiometricsScreen(onClickNavigation: (NavigationEvent) -> Unit, modifier: Mod
     MyTonWalletSurface(
         modifier = modifier,
     ) {
+        val promptManager = BiometricPromptManager(LocalContext.current.findActivity())
+
+        val biometricResult by promptManager.promptResults.collectAsState(
+            initial = null
+        )
+        val enrollLauncher = rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.StartActivityForResult(),
+            onResult = {
+                println("Activity result: $it")
+            }
+        )
+        LaunchedEffect(biometricResult) {
+            if (biometricResult is BiometricPromptManager.BiometricResult.AuthenticationNotSet) {
+                if (Build.VERSION.SDK_INT >= 30) {
+                    val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
+                        putExtra(
+                            Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
+                            BIOMETRIC_STRONG or DEVICE_CREDENTIAL
+                        )
+                    }
+                    enrollLauncher.launch(enrollIntent)
+                }
+            }
+        }
+
+        biometricResult?.let { result ->
+            when (result) {
+                is BiometricPromptManager.BiometricResult.AuthenticationError -> {
+                    // result.error
+                }
+
+                BiometricPromptManager.BiometricResult.AuthenticationFailed -> {
+                    "Authentication failed"
+                }
+
+                BiometricPromptManager.BiometricResult.AuthenticationNotSet -> {
+                    "Authentication not set"
+                }
+
+                BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
+                    //todo save biometric
+                    onClickNavigation(CreateWalletRouter.PhraseShowing)
+                }
+
+                BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
+                    "Feature unavailable"
+                }
+
+                BiometricPromptManager.BiometricResult.HardwareUnavailable -> {
+                    "Hardware unavailable"
+                }
+            }
+        }
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -102,7 +169,10 @@ fun BiometricsScreen(onClickNavigation: (NavigationEvent) -> Unit, modifier: Mod
             MyTonWalletButton(
                 text = stringResource(id = R.string.btn_enable),
                 onClick = {
-
+                    promptManager.showBiometricPrompt(
+                        title = "Enable Biometric",
+                        description = ""
+                    )
                 }
             )
             Spacer(Modifier.height(8.dp))
@@ -121,4 +191,13 @@ fun BiometricsScreen(onClickNavigation: (NavigationEvent) -> Unit, modifier: Mod
         }
 
     }
+}
+
+fun Context.findActivity(): AppCompatActivity {
+    var context = this
+    while (context is ContextWrapper) {
+        if (context is AppCompatActivity) return context
+        context = context.baseContext
+    }
+    throw IllegalStateException("no activity")
 }
