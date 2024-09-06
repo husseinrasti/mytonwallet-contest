@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_prefect">Perfect!</string>
+    <string name="msg_set_passcode">Now set up a passcode to secure transactions.</string>
+    <string name="btn_set_passcode">Set a Passcode</string>
+    <string name="chk_enable_biometric">Enable Biometric Auth</string>
+    <string name="title_unlock_wallet">Unlock to use wallet</string>
+    <string name="_unlock_wallet">Enter passcode or use fingerprint</string>
+    <string name="desc_unlock_wallet">Enter passcode or use fingerprint</string>
+</resources>

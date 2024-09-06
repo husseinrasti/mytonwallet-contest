@@ -1,47 +1,42 @@
 package com.husseinrasti.app.mytonwallet
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.husseinrasti.app.mytonwallet.ui.theme.MyTonWalletContestTheme
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
+import com.husseinrasti.app.mytonwallet.navigation.MyTonWalletNavHost
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             MyTonWalletContestTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
+                    val state by viewModel.state.collectAsStateWithLifecycle()
+                    when (state) {
+                        MainState.Idle -> {}
+                        MainState.NavigateToAuth ->
+                            MyTonWalletNavHost(isAuth = true)
+
+                        MainState.NavigateToCreateWallet ->
+                            MyTonWalletNavHost(isAuth = false)
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyTonWalletContestTheme {
-        Greeting("Android")
     }
 }
