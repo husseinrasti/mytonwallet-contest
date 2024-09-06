@@ -16,11 +16,11 @@ object Mnemonic {
     suspend fun generate(
         dispatcher: CoroutineContext,
         wordCount: Int = DEFAULT_WORD_COUNT,
-        wordlist: List<String> = mnemonicWords(),
         random: Random = SecureRandom
     ): List<String> = withContext(dispatcher + MnemonicGeneratorCoroutineName) {
+        val wordlist: List<String> = mnemonicWords()
         val mnemonic = Array(wordCount) { "" }
-        val weakRandom = Random(random.nextLong())
+        val weakRandom = Random(random.nextInt())
         repeat(wordCount) { i ->
             mnemonic[i] = wordlist.random(weakRandom)
         }

@@ -1,5 +1,6 @@
 package com.husseinrasti.app.feature.auth.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.husseinrasti.app.feature.auth.domain.entity.AuthEntity
@@ -7,7 +8,10 @@ import com.husseinrasti.app.feature.auth.domain.usecase.CheckAuthenticationUseCa
 import com.husseinrasti.app.feature.auth.domain.usecase.GetNumPasscodeDigitsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,11 +21,11 @@ class AuthViewModel @Inject constructor(
     private val getNumPasscodeDigitsUseCase: GetNumPasscodeDigitsUseCase,
 ) : ViewModel() {
 
-    private val _state = MutableSharedFlow<AuthState>()
-    val state = _state.asSharedFlow()
+    private val _stateAuth = MutableSharedFlow<AuthState>()
+    val stateAuth = _stateAuth.asSharedFlow()
 
-    private val _stateNumDigits = MutableSharedFlow<Boolean>()
-    val stateNumDigits = _stateNumDigits.asSharedFlow()
+    private val _stateNumDigits = MutableStateFlow(false)
+    val stateNumDigits = _stateNumDigits.asStateFlow()
 
     init {
         getNumPasscodeDigits()
@@ -31,19 +35,20 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             getNumPasscodeDigitsUseCase.invoke()
                 .fold(
-                    onSuccess = {
-                        _stateNumDigits.emit(it)
+                    onSuccess = { isUse6Digits ->
+                        Log.i("TAG", "getNumPasscodeDigits: $isUse6Digits")
+                        _stateNumDigits.update { isUse6Digits }
                     },
-                    onFailure = {
-                        _stateNumDigits.emit(false)
-                    }
+                    onFailure = {}
                 )
         }
     }
 
     fun check(biometric: Boolean?, passcode: String?) {
+        Log.i("TAG", "check biometric: $biometric")
+        Log.i("TAG", "check passcode: $passcode")
         viewModelScope.launch {
-            _state.emit(AuthState.Loading)
+            _stateAuth.emit(AuthState(loading = true))
             checkAuthenticationUseCase.invoke(
                 AuthEntity(
                     passcode = passcode,
@@ -51,13 +56,10 @@ class AuthViewModel @Inject constructor(
                 )
             ).fold(
                 onSuccess = { isGranted ->
-                    _state.emit(
-                        if (isGranted) AuthState.NavigateToMain
-                        else AuthState.Error
-                    )
+                    _stateAuth.emit(AuthState(navigateToMain = isGranted))
                 },
                 onFailure = {
-                    _state.emit(AuthState.Error)
+                    _stateAuth.emit(AuthState(error = it.message))
                 }
             )
         }
@@ -66,8 +68,8 @@ class AuthViewModel @Inject constructor(
 }
 
 
-sealed interface AuthState {
-    data object Loading : AuthState
-    data object NavigateToMain : AuthState
-    data object Error : AuthState
-}
+data class AuthState(
+    val loading: Boolean = false,
+    val navigateToMain: Boolean = false,
+    val error: String? = null,
+)

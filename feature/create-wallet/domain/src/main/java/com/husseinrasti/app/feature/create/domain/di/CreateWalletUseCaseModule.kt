@@ -13,6 +13,8 @@ import com.husseinrasti.app.feature.create.domain.usecase.GeneratePhrasesUseCase
 import com.husseinrasti.app.feature.create.domain.usecase.GeneratePhrasesUseCaseImpl
 import com.husseinrasti.app.feature.create.domain.usecase.GetPhrasesUseCase
 import com.husseinrasti.app.feature.create.domain.usecase.GetPhrasesUseCaseImpl
+import com.husseinrasti.app.feature.create.domain.usecase.MatchPhrasesUseCase
+import com.husseinrasti.app.feature.create.domain.usecase.MatchPhrasesUseCaseImpl
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -41,5 +43,11 @@ interface CreateWalletUseCaseModule {
     fun provideCheckRecoveryPhrasesUseCase(
         checkRecoveryPhrasesUseCaseImpl: CheckRecoveryPhrasesUseCaseImpl
     ): CheckRecoveryPhrasesUseCase
+
+    @Binds
+    @ViewModelScoped
+    fun bindMatchPhrasesUseCase(
+        matchPhrasesUseCaseImpl: MatchPhrasesUseCaseImpl
+    ): MatchPhrasesUseCase
 
 }

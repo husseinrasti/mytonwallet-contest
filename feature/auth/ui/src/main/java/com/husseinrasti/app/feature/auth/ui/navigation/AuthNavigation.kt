@@ -1,28 +1,25 @@
 package com.husseinrasti.app.feature.auth.ui.navigation
 
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavOptions
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.feature.auth.ui.AuthScreenRoute
 
 
-const val authGraph = "auth_graph"
-private const val authScreenRoute = "auth_screen_route"
-
-
-fun NavController.navigateToAuth(navOptions: NavOptions? = null) {
-    this.navigate(authGraph, navOptions)
-}
-
-fun NavGraphBuilder.authGraph(
-    navController: NavController,
+@Composable
+fun AuthGraph(
+    navController: NavHostController,
     onClickNavigation: (NavigationEvent) -> Unit
 ) {
-    navigation(startDestination = authScreenRoute, route = authGraph) {
-        composable(authScreenRoute) {
+    NavHost(
+        modifier = Modifier,
+        startDestination = AuthRouter.Start,
+        navController = navController
+    ) {
+        composable<AuthRouter.Start> {
             AuthScreenRoute(onClickNavigation = onClickNavigation)
         }
     }

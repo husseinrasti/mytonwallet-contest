@@ -3,14 +3,25 @@ package com.husseinrasti.app.feature.auth.ui
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.biometric.BiometricManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
@@ -34,8 +45,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.husseinrasti.app.component.navigation.NavigateToMain
-import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.component.navigation.NavigationEvent
+import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.component.ui.ColorBox
 import com.husseinrasti.app.component.ui.MyTonWalletSurface
 import com.husseinrasti.app.component.ui.PasscodeInput
@@ -54,24 +65,17 @@ internal fun AuthScreenRoute(
     modifier: Modifier = Modifier,
     viewModel: AuthViewModel = hiltViewModel(),
 ) {
-    val state = viewModel.state.collectAsStateWithLifecycle(initialValue = null)
-    val isUse6Digits = viewModel.stateNumDigits.collectAsStateWithLifecycle(
-        initialValue = null
-    ).value ?: false
+    val stateAuth by viewModel.stateAuth.collectAsStateWithLifecycle(initialValue = null)
+    val isUse6Digits by viewModel.stateNumDigits.collectAsStateWithLifecycle()
 
-    when (state.value) {
-        AuthState.Error -> {}
-        AuthState.Loading -> {}
-        AuthState.NavigateToMain -> onClickNavigation(NavigateToMain)
-        null -> {}
+    if (stateAuth?.navigateToMain == true) {
+        onClickNavigation(NavigateToMain)
     }
 
     AuthScaffoldScreen(
-        onChangeRoute = { biometric, passcode ->
-            viewModel.check(biometric = biometric, passcode = passcode)
-        },
+        onChangeRoute = viewModel::check,
         modifier = modifier,
-        isUse6Digits = isUse6Digits
+        isUse6Digits = isUse6Digits,
     )
 }
 
@@ -101,6 +105,9 @@ private fun AuthScreen(
 ) {
     var passcode by remember { mutableStateOf("") }
 
+    if (isUse6Digits.not() && passcode.length == 4) onChangeRoute.invoke(null, passcode)
+    if (isUse6Digits && passcode.length == 6) onChangeRoute.invoke(null, passcode)
+
     val promptManager = BiometricPromptManager(LocalContext.current.findActivity())
 
     val biometricResult by promptManager.promptResults.collectAsState(
@@ -124,33 +131,33 @@ private fun AuthScreen(
                 enrollLauncher.launch(enrollIntent)
             }
         }
-    }
 
-    biometricResult?.let { result ->
-        when (result) {
-            is BiometricPromptManager.BiometricResult.AuthenticationError -> {
-                // result.error
-            }
+        biometricResult?.let { result ->
+            when (result) {
+                is BiometricPromptManager.BiometricResult.AuthenticationError -> {
+                    // result.error
+                }
 
-            BiometricPromptManager.BiometricResult.AuthenticationFailed -> {
-                "Authentication failed"
-            }
+                BiometricPromptManager.BiometricResult.AuthenticationFailed -> {
+                    "Authentication failed"
+                }
 
-            BiometricPromptManager.BiometricResult.AuthenticationNotSet -> {
-                "Authentication not set"
-            }
+                BiometricPromptManager.BiometricResult.AuthenticationNotSet -> {
+                    "Authentication not set"
+                }
 
-            BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
-                //todo save biometric
-                onChangeRoute(true, null)
-            }
+                BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
+                    //todo save biometric
+                    onChangeRoute.invoke(true, null)
+                }
 
-            BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
-                "Feature unavailable"
-            }
+                BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
+                    "Feature unavailable"
+                }
 
-            BiometricPromptManager.BiometricResult.HardwareUnavailable -> {
-                "Hardware unavailable"
+                BiometricPromptManager.BiometricResult.HardwareUnavailable -> {
+                    "Hardware unavailable"
+                }
             }
         }
     }
@@ -181,12 +188,9 @@ private fun AuthScreen(
                     passcode = passcode,
                     passcodeCount = if (isUse6Digits) 6 else 4,
                     onPasscodeTextChange = { code, isFill ->
-                        passcode = code
-                        if (isFill) {
-                            onChangeRoute(null, passcode)
-                        }
+//                        passcode = code
+                        Log.i("TAG", "AuthScreen: $code , $isFill")
                     },
-                    onFocusChanged = {},
                     colorBox = ColorBox(
                         fill = MaterialTheme.colors.primary,
                         empty = MaterialTheme.colors.secondaryVariant,
@@ -267,7 +271,10 @@ private fun AuthScreen(
                         },
                         listener = object : NumberKeyboardListener {
                             override fun onUpdated(data: NumberKeyboardData) {
+                                if (isUse6Digits && data.int.toString().length > 6) return
+                                if (isUse6Digits.not() && data.int.toString().length > 4) return
                                 passcode = data.int.toString()
+                                Log.i("TAG", "passcode: $passcode")
                             }
                         }
                     )
@@ -283,6 +290,9 @@ private fun AuthScreen(
 @Composable
 private fun StartScreenPreview() {
     MyTonWalletContestTheme {
-        AuthScaffoldScreen(onChangeRoute = { _, _ -> }, isUse6Digits = true)
+        AuthScaffoldScreen(
+            onChangeRoute = { _, _ -> },
+            isUse6Digits = true,
+        )
     }
 }

@@ -24,9 +24,9 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.husseinrasti.app.component.navigation.NavigateToMain
 import com.husseinrasti.app.component.navigation.NavigateUp
 import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.component.ui.MyTonWalletButton
@@ -36,20 +36,22 @@ import com.husseinrasti.app.component.ui.MyTonWalletTextField
 import com.husseinrasti.app.component.ui.MyTonWalletTopAppBar
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.feature.create.ui.R
+import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
 import com.husseinrasti.app.feature.create.ui.phrase.model.EditTextState
 
 @Composable
 internal fun TestPhraseRoute(
     modifier: Modifier = Modifier,
     onClickNavigation: (NavigationEvent) -> Unit,
+    item: CreateWalletRouter.PhraseTesting,
     viewModel: TestPhraseViewModel = hiltViewModel(),
 ) {
-    val randomNumbers by viewModel.randomNumbers.collectAsStateWithLifecycle(
-        minActiveState = Lifecycle.State.RESUMED
-    )
+    val randomNumbers by viewModel.randomNumbers.collectAsStateWithLifecycle()
 
-    val autocompleteState by viewModel.autocompletePhrases.collectAsStateWithLifecycle(
-        minActiveState = Lifecycle.State.RESUMED
+    val autocompleteState by viewModel.autocompletePhrases.collectAsStateWithLifecycle()
+
+    val matchPhrases by viewModel.matchPhrases.collectAsStateWithLifecycle(
+        initialValue = null
     )
 
     var showDialog by remember { mutableStateOf(false) }
@@ -69,6 +71,15 @@ internal fun TestPhraseRoute(
         )
     }
 
+    when (matchPhrases) {
+        true -> {
+            onClickNavigation(NavigateToMain)
+        }
+
+        false -> showDialog = true
+        null -> {}
+    }
+
     if (randomNumbers.size == COUNT_PHRASE_TEST) {
         TestPhraseScaffoldScreen(
             onClickNavigation = onClickNavigation,
@@ -78,7 +89,7 @@ internal fun TestPhraseRoute(
             updateEditTextState = viewModel::updateEditTextState,
             autocompleteState = autocompleteState,
             onClickContinue = {
-                showDialog = true
+                viewModel.matchPhrases(item)
             }
         )
     } else {
