@@ -5,6 +5,8 @@ import android.os.Build
 import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
+import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,8 +22,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
@@ -29,20 +33,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.husseinrasti.app.component.navigation.NavigateUp
+import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.component.ui.MyTonWalletButton
 import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
 import com.husseinrasti.app.component.ui.MyTonWalletSurface
 import com.husseinrasti.app.component.ui.MyTonWalletTopAppBar
-import com.husseinrasti.app.component.navigation.NavigateUp
-import com.husseinrasti.app.component.navigation.NavigationEvent
-import com.husseinrasti.app.feature.create.ui.R
-import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
-import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
-import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import com.husseinrasti.app.core.security.biometric.BiometricPromptManager
 import com.husseinrasti.app.core.security.biometric.findActivity
+import com.husseinrasti.app.feature.create.ui.R
+import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
 
 @Composable
 internal fun BiometricsRoute(
@@ -118,32 +118,31 @@ fun BiometricsScreen(
                     enrollLauncher.launch(enrollIntent)
                 }
             }
-        }
+            biometricResult?.let { result ->
+                when (result) {
+                    is BiometricPromptManager.BiometricResult.AuthenticationError -> {
+                        // result.error
+                    }
 
-        biometricResult?.let { result ->
-            when (result) {
-                is BiometricPromptManager.BiometricResult.AuthenticationError -> {
-                    // result.error
-                }
+                    BiometricPromptManager.BiometricResult.AuthenticationFailed -> {
+                        "Authentication failed"
+                    }
 
-                BiometricPromptManager.BiometricResult.AuthenticationFailed -> {
-                    "Authentication failed"
-                }
+                    BiometricPromptManager.BiometricResult.AuthenticationNotSet -> {
+                        "Authentication not set"
+                    }
 
-                BiometricPromptManager.BiometricResult.AuthenticationNotSet -> {
-                    "Authentication not set"
-                }
+                    BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
+                        onNavigateToPhraseShowing.invoke(true)
+                    }
 
-                BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
-                    onNavigateToPhraseShowing(true)
-                }
+                    BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
+                        "Feature unavailable"
+                    }
 
-                BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
-                    "Feature unavailable"
-                }
-
-                BiometricPromptManager.BiometricResult.HardwareUnavailable -> {
-                    "Hardware unavailable"
+                    BiometricPromptManager.BiometricResult.HardwareUnavailable -> {
+                        "Hardware unavailable"
+                    }
                 }
             }
         }
@@ -190,7 +189,7 @@ fun BiometricsScreen(
             Spacer(Modifier.height(8.dp))
             ClickableText(
                 text = AnnotatedString(stringResource(R.string.btn_skip)),
-                onClick = { onNavigateToPhraseShowing(false) },
+                onClick = { onNavigateToPhraseShowing.invoke(false) },
                 style = TextStyle(
                     color = MaterialTheme.colors.secondaryVariant,
                     fontFamily = MaterialTheme.typography.body1.fontFamily,

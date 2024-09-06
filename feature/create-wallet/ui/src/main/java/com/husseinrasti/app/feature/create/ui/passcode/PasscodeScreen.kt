@@ -31,12 +31,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.husseinrasti.app.component.navigation.NavigateUp
+import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
 import com.husseinrasti.app.component.ui.MyTonWalletSurface
 import com.husseinrasti.app.component.ui.MyTonWalletTopAppBar
 import com.husseinrasti.app.component.ui.PasscodeInput
-import com.husseinrasti.app.component.navigation.NavigateUp
-import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.feature.create.ui.R
 import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
 import kotlinx.coroutines.delay
@@ -50,8 +50,13 @@ internal fun PasscodeRoute(
     PasscodeScaffoldScreen(
         onClickNavigation = onClickNavigation,
         modifier = modifier,
-        onChangeRoute = { is6digits, passcode, event ->
-            onClickNavigation(event)
+        onNavigateToBiometric = { is6digits, passcode ->
+            onClickNavigation(
+                CreateWalletRouter.Biometric(
+                    passcode = passcode,
+                    isUse6Digits = is6digits
+                )
+            )
         }
     )
 }
@@ -59,7 +64,7 @@ internal fun PasscodeRoute(
 @Composable
 private fun PasscodeScaffoldScreen(
     onClickNavigation: (NavigationEvent) -> Unit,
-    onChangeRoute: (Boolean, String, NavigationEvent) -> Unit,
+    onNavigateToBiometric: (Boolean, String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -71,7 +76,7 @@ private fun PasscodeScaffoldScreen(
         },
         content = {
             PasscodeScreen(
-                onChangeRoute = onChangeRoute,
+                onNavigateToBiometric = onNavigateToBiometric,
                 modifier = modifier.padding(it)
             )
         }
@@ -80,7 +85,7 @@ private fun PasscodeScaffoldScreen(
 
 @Composable
 fun PasscodeScreen(
-    onChangeRoute: (Boolean, String, NavigationEvent) -> Unit,
+    onNavigateToBiometric: (Boolean, String) -> Unit,
     modifier: Modifier
 ) {
     MyTonWalletSurface(
@@ -94,7 +99,6 @@ fun PasscodeScreen(
             verticalArrangement = Arrangement.Center,
         ) {
             var isUse6Digits by remember { mutableStateOf(false) }
-            var isFocus by remember { mutableStateOf(false) }
             var passcode by remember { mutableStateOf("") }
 
             val focusRequester = remember { FocusRequester() }
@@ -138,18 +142,11 @@ fun PasscodeScreen(
                 onPasscodeTextChange = { code, isFill ->
                     passcode = code
                     if (isFill) {
-                        onChangeRoute.invoke(
+                        onNavigateToBiometric.invoke(
                             isUse6Digits,
-                            passcode,
-                            CreateWalletRouter.Biometric(
-                                passcode = passcode,
-                                isUse6Digits = isUse6Digits
-                            )
+                            passcode
                         )
                     }
-                },
-                onFocusChanged = {
-                    isFocus = it.hasFocus
                 },
                 focusRequester = focusRequester
             )

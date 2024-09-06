@@ -2,9 +2,11 @@ package com.husseinrasti.app.feature.create.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.*
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import com.husseinrasti.app.component.navigation.NavigateUp
 import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.feature.create.ui.biometrics.BiometricsRoute
@@ -14,19 +16,6 @@ import com.husseinrasti.app.feature.create.ui.phrase.phrase.ShowPhraseRoute
 import com.husseinrasti.app.feature.create.ui.phrase.recovery.RecoveryPhraseRoute
 import com.husseinrasti.app.feature.create.ui.phrase.test.TestPhraseRoute
 import com.husseinrasti.app.feature.create.ui.start.StartRoute
-
-const val createWalletGraph = "create_wallet_graph"
-private const val startScreenRoute = "start_screen_route"
-private const val walletCreatedScreenRoute = "wallet_created_route"
-private const val showPhraseScreenRoute = "show_phrase_screen_route"
-private const val testPhraseScreenRoute = "test_phrase_screen_route"
-private const val recoveryPhraseScreenRoute = "recovery_phrase_screen_route"
-private const val passcodeScreenRoute = "passcode_screen_route"
-private const val biometricScreenRoute = "biometric_screen_route"
-
-fun NavController.navigateToCreateWallet(navOptions: NavOptions? = null) {
-    this.navigate(CreateWalletRouter.Start, navOptions)
-}
 
 @Composable
 fun CreateWalletGraph(

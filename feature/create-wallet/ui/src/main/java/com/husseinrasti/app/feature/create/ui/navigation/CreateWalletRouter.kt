@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 
 sealed interface CreateWalletRouter : NavigationEvent {
     @Serializable
-    object Start : CreateWalletRouter
+    data object Start : CreateWalletRouter
 
     @Serializable
-    object WalletCreation : CreateWalletRouter
+    data object WalletCreation : CreateWalletRouter
 
     @Serializable
     data class PhraseShowing(
@@ -25,10 +25,10 @@ sealed interface CreateWalletRouter : NavigationEvent {
     ) : CreateWalletRouter
 
     @Serializable
-    object PhraseRecovery : CreateWalletRouter
+    data object PhraseRecovery : CreateWalletRouter
 
     @Serializable
-    object Passcode : CreateWalletRouter
+    data object Passcode : CreateWalletRouter
 
     @Serializable
     data class Biometric(val passcode: String, val isUse6Digits: Boolean) : CreateWalletRouter

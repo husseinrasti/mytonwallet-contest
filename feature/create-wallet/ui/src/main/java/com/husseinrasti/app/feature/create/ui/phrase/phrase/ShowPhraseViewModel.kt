@@ -2,10 +2,13 @@ package com.husseinrasti.app.feature.create.ui.phrase.phrase
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import com.husseinrasti.app.feature.create.domain.usecase.GetPhrasesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,6 +25,8 @@ class ShowPhraseViewModel @Inject constructor(
 
     private fun getPhrases() {
         viewModelScope.launch {
+            _uiState.update { ShowPhraseUiState.Loading }
+            delay(2000)
             getPhrasesUseCase().fold(
                 onSuccess = { phrases ->
                     _uiState.update { ShowPhraseUiState.Success(phrases) }
