@@ -31,6 +31,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.husseinrasti.app.component.navigation.NavigateToMain
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
 import com.husseinrasti.app.component.navigation.NavigationEvent
@@ -50,24 +52,42 @@ import com.husseinrasti.app.core.security.biometric.findActivity
 internal fun AuthScreenRoute(
     onClickNavigation: (NavigationEvent) -> Unit,
     modifier: Modifier = Modifier,
+    viewModel: AuthViewModel = hiltViewModel(),
 ) {
+    val state = viewModel.state.collectAsStateWithLifecycle(initialValue = null)
+    val isUse6Digits = viewModel.stateNumDigits.collectAsStateWithLifecycle(
+        initialValue = null
+    ).value ?: false
+
+    when (state.value) {
+        AuthState.Error -> {}
+        AuthState.Loading -> {}
+        AuthState.NavigateToMain -> onClickNavigation(NavigateToMain)
+        null -> {}
+    }
+
     AuthScaffoldScreen(
-        onClickNavigation = onClickNavigation,
-        modifier = modifier
+        onChangeRoute = { biometric, passcode ->
+            viewModel.check(biometric = biometric, passcode = passcode)
+        },
+        modifier = modifier,
+        isUse6Digits = isUse6Digits
     )
 }
 
 @Composable
 private fun AuthScaffoldScreen(
-    onClickNavigation: (NavigationEvent) -> Unit,
+    onChangeRoute: (Boolean?, String?) -> Unit,
     modifier: Modifier = Modifier,
+    isUse6Digits: Boolean,
 ) {
     Scaffold(
         topBar = {},
         content = {
             AuthScreen(
-                onClickNavigation = onClickNavigation,
-                modifier = modifier.padding(it)
+                onChangeRoute = onChangeRoute,
+                modifier = modifier.padding(it),
+                isUse6Digits = isUse6Digits
             )
         }
     )
@@ -75,11 +95,11 @@ private fun AuthScaffoldScreen(
 
 @Composable
 private fun AuthScreen(
-    onClickNavigation: (NavigationEvent) -> Unit,
+    onChangeRoute: (Boolean?, String?) -> Unit,
     modifier: Modifier = Modifier,
+    isUse6Digits: Boolean,
 ) {
     var passcode by remember { mutableStateOf("") }
-    var isUse6Digits by remember { mutableStateOf(false) }
 
     val promptManager = BiometricPromptManager(LocalContext.current.findActivity())
 
@@ -122,7 +142,7 @@ private fun AuthScreen(
 
             BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
                 //todo save biometric
-                onClickNavigation(NavigateToMain)
+                onChangeRoute(true, null)
             }
 
             BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
@@ -163,7 +183,7 @@ private fun AuthScreen(
                     onPasscodeTextChange = { code, isFill ->
                         passcode = code
                         if (isFill) {
-                            onClickNavigation(NavigateToMain)
+                            onChangeRoute(null, passcode)
                         }
                     },
                     onFocusChanged = {},
@@ -206,7 +226,6 @@ private fun AuthScreen(
                     NumberKeyboard(
                         maxAllowedAmount = if (isUse6Digits) 999_999.00 else 9_999.00,
                         maxAllowedDecimals = 0,
-                        isInverted = true,
                         currencySymbol = "",
                         verticalArrangement = Arrangement.spacedBy(24.dp),
                         horizontalArrangement = Arrangement.spacedBy(24.dp),
@@ -264,6 +283,6 @@ private fun AuthScreen(
 @Composable
 private fun StartScreenPreview() {
     MyTonWalletContestTheme {
-        AuthScaffoldScreen(onClickNavigation = {})
+        AuthScaffoldScreen(onChangeRoute = { _, _ -> }, isUse6Digits = true)
     }
 }

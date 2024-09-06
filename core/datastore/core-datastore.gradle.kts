@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "com.husseinrasti.app.core.datastore"
 }
+
+dependencies {
+    implementation(project(":core:dagger-hilt"))
+}

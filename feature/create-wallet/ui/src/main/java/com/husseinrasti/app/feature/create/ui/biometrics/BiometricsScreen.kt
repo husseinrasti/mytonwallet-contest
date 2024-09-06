@@ -1,7 +1,5 @@
 package com.husseinrasti.app.feature.create.ui.biometrics
 
-import android.content.Context
-import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
@@ -39,11 +37,11 @@ import com.husseinrasti.app.component.navigation.NavigateUp
 import com.husseinrasti.app.component.navigation.NavigationEvent
 import com.husseinrasti.app.feature.create.ui.R
 import com.husseinrasti.app.feature.create.ui.navigation.CreateWalletRouter
-import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.husseinrasti.app.core.security.biometric.BiometricPromptManager
 import com.husseinrasti.app.core.security.biometric.findActivity
 
@@ -51,16 +49,22 @@ import com.husseinrasti.app.core.security.biometric.findActivity
 internal fun BiometricsRoute(
     onClickNavigation: (NavigationEvent) -> Unit,
     modifier: Modifier = Modifier,
+    viewModel: BiometricViewModel = hiltViewModel(),
 ) {
     BiometricsScaffoldScreen(
         onClickNavigation = onClickNavigation,
-        modifier = modifier
+        modifier = modifier,
+        onChangeRoute = { enabled, event ->
+            viewModel.saveBiometric(enabled)
+            onClickNavigation(event)
+        }
     )
 }
 
 @Composable
 private fun BiometricsScaffoldScreen(
     onClickNavigation: (NavigationEvent) -> Unit,
+    onChangeRoute: (Boolean, NavigationEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -72,7 +76,7 @@ private fun BiometricsScaffoldScreen(
         },
         content = {
             BiometricsScreen(
-                onClickNavigation = onClickNavigation,
+                onChangeRoute = onChangeRoute,
                 modifier = modifier.padding(it)
             )
         }
@@ -80,7 +84,10 @@ private fun BiometricsScaffoldScreen(
 }
 
 @Composable
-fun BiometricsScreen(onClickNavigation: (NavigationEvent) -> Unit, modifier: Modifier) {
+fun BiometricsScreen(
+    onChangeRoute: (Boolean, NavigationEvent) -> Unit,
+    modifier: Modifier
+) {
     MyTonWalletSurface(
         modifier = modifier,
     ) {
@@ -124,8 +131,7 @@ fun BiometricsScreen(onClickNavigation: (NavigationEvent) -> Unit, modifier: Mod
                 }
 
                 BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
-                    //todo save biometric
-                    onClickNavigation(CreateWalletRouter.PhraseShowing)
+                    onChangeRoute(true, CreateWalletRouter.PhraseShowing)
                 }
 
                 BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
@@ -180,7 +186,7 @@ fun BiometricsScreen(onClickNavigation: (NavigationEvent) -> Unit, modifier: Mod
             Spacer(Modifier.height(8.dp))
             ClickableText(
                 text = AnnotatedString(stringResource(R.string.btn_skip)),
-                onClick = { onClickNavigation(CreateWalletRouter.PhraseShowing) },
+                onClick = { onChangeRoute(false, CreateWalletRouter.PhraseShowing) },
                 style = TextStyle(
                     color = MaterialTheme.colors.secondaryVariant,
                     fontFamily = MaterialTheme.typography.body1.fontFamily,

@@ -30,6 +30,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.husseinrasti.app.component.ui.MyTonWalletLottieAnimation
 import com.husseinrasti.app.component.ui.MyTonWalletSurface
@@ -46,16 +47,22 @@ import kotlinx.coroutines.delay
 internal fun PasscodeRoute(
     onClickNavigation: (NavigationEvent) -> Unit,
     modifier: Modifier = Modifier,
+    viewModel: PasscodeViewModel = hiltViewModel(),
 ) {
     PasscodeScaffoldScreen(
         onClickNavigation = onClickNavigation,
-        modifier = modifier
+        modifier = modifier,
+        onChangeRoute = { is6digits, passcode, event ->
+            viewModel.savePasscode(is6Digits = is6digits, passcode = passcode)
+            onClickNavigation(event)
+        }
     )
 }
 
 @Composable
 private fun PasscodeScaffoldScreen(
     onClickNavigation: (NavigationEvent) -> Unit,
+    onChangeRoute: (Boolean, String, NavigationEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -67,7 +74,7 @@ private fun PasscodeScaffoldScreen(
         },
         content = {
             PasscodeScreen(
-                onClickNavigation = onClickNavigation,
+                onChangeRoute = onChangeRoute,
                 modifier = modifier.padding(it)
             )
         }
@@ -75,7 +82,10 @@ private fun PasscodeScaffoldScreen(
 }
 
 @Composable
-fun PasscodeScreen(onClickNavigation: (NavigationEvent) -> Unit, modifier: Modifier) {
+fun PasscodeScreen(
+    onChangeRoute: (Boolean, String, NavigationEvent) -> Unit,
+    modifier: Modifier
+) {
     MyTonWalletSurface(
         modifier = modifier
     ) {
@@ -131,7 +141,11 @@ fun PasscodeScreen(onClickNavigation: (NavigationEvent) -> Unit, modifier: Modif
                 onPasscodeTextChange = { code, isFill ->
                     passcode = code
                     if (isFill) {
-                        onClickNavigation.invoke(CreateWalletRouter.Biometric)
+                        onChangeRoute.invoke(
+                            isUse6Digits,
+                            passcode,
+                            CreateWalletRouter.Biometric
+                        )
                     }
                 },
                 onFocusChanged = {
