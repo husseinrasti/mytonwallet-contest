@@ -1,6 +1,9 @@
 package com.husseinrasti.app.feature.create.ui.navigation
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.*
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.husseinrasti.app.component.navigation.NavigateUp
 import com.husseinrasti.app.component.navigation.NavigationEvent
@@ -22,15 +25,20 @@ private const val passcodeScreenRoute = "passcode_screen_route"
 private const val biometricScreenRoute = "biometric_screen_route"
 
 fun NavController.navigateToCreateWallet(navOptions: NavOptions? = null) {
-    this.navigate(createWalletGraph, navOptions)
+    this.navigate(CreateWalletRouter.Start, navOptions)
 }
 
-fun NavGraphBuilder.createWalletGraph(
-    navController: NavController,
+@Composable
+fun CreateWalletGraph(
+    navController: NavHostController,
     onClickNavigation: (NavigationEvent) -> Unit
 ) {
-    navigation(startDestination = startScreenRoute, route = createWalletGraph) {
-        composable(route = startScreenRoute) {
+    NavHost(
+        modifier = Modifier,
+        navController = navController,
+        startDestination = CreateWalletRouter.Start,
+    ) {
+        composable<CreateWalletRouter.Start> {
             StartRoute(onClickNavigation = { event ->
                 onNavigateByEvent(
                     event = event,
@@ -39,7 +47,7 @@ fun NavGraphBuilder.createWalletGraph(
                 )
             })
         }
-        composable(route = walletCreatedScreenRoute) {
+        composable<CreateWalletRouter.WalletCreation> {
             WalletCreatedRoute(onClickNavigation = { event ->
                 onNavigateByEvent(
                     event = event,
@@ -48,25 +56,31 @@ fun NavGraphBuilder.createWalletGraph(
                 )
             })
         }
-        composable(route = showPhraseScreenRoute) {
-            ShowPhraseRoute(onClickNavigation = { event ->
-                onNavigateByEvent(
-                    event = event,
-                    onClickNavigation = onClickNavigation,
-                    navController = navController
-                )
-            })
+        composable<CreateWalletRouter.PhraseShowing> {
+            val item = it.toRoute<CreateWalletRouter.PhraseShowing>()
+            ShowPhraseRoute(
+                item = item,
+                onClickNavigation = { event ->
+                    onNavigateByEvent(
+                        event = event,
+                        onClickNavigation = onClickNavigation,
+                        navController = navController
+                    )
+                })
         }
-        composable(route = testPhraseScreenRoute) {
-            TestPhraseRoute(onClickNavigation = { event ->
-                onNavigateByEvent(
-                    event = event,
-                    onClickNavigation = onClickNavigation,
-                    navController = navController
-                )
-            })
+        composable<CreateWalletRouter.PhraseTesting> {
+            val item = it.toRoute<CreateWalletRouter.PhraseTesting>()
+            TestPhraseRoute(
+                item = item,
+                onClickNavigation = { event ->
+                    onNavigateByEvent(
+                        event = event,
+                        onClickNavigation = onClickNavigation,
+                        navController = navController
+                    )
+                })
         }
-        composable(route = recoveryPhraseScreenRoute) {
+        composable<CreateWalletRouter.PhraseRecovery> {
             RecoveryPhraseRoute(onClickNavigation = { event ->
                 onNavigateByEvent(
                     event = event,
@@ -75,7 +89,7 @@ fun NavGraphBuilder.createWalletGraph(
                 )
             })
         }
-        composable(passcodeScreenRoute) {
+        composable<CreateWalletRouter.Passcode> {
             PasscodeRoute(onClickNavigation = { event ->
                 onNavigateByEvent(
                     event = event,
@@ -84,14 +98,17 @@ fun NavGraphBuilder.createWalletGraph(
                 )
             })
         }
-        composable(biometricScreenRoute) {
-            BiometricsRoute(onClickNavigation = { event ->
-                onNavigateByEvent(
-                    event = event,
-                    onClickNavigation = onClickNavigation,
-                    navController = navController
-                )
-            })
+        composable<CreateWalletRouter.Biometric> {
+            val item = it.toRoute<CreateWalletRouter.Biometric>()
+            BiometricsRoute(
+                item = item,
+                onClickNavigation = { event ->
+                    onNavigateByEvent(
+                        event = event,
+                        onClickNavigation = onClickNavigation,
+                        navController = navController
+                    )
+                })
         }
     }
 }
@@ -103,22 +120,22 @@ private fun onNavigateByEvent(
 ) {
     when (event) {
         is CreateWalletRouter.PhraseShowing ->
-            navController.navigate(showPhraseScreenRoute)
+            navController.navigate(event)
 
         is CreateWalletRouter.PhraseTesting ->
-            navController.navigate(testPhraseScreenRoute)
+            navController.navigate(event)
 
         is CreateWalletRouter.PhraseRecovery ->
-            navController.navigate(recoveryPhraseScreenRoute)
+            navController.navigate(event)
 
         is CreateWalletRouter.Passcode ->
-            navController.navigate(passcodeScreenRoute)
+            navController.navigate(event)
 
         is CreateWalletRouter.Biometric ->
-            navController.navigate(biometricScreenRoute)
+            navController.navigate(event)
 
         is CreateWalletRouter.WalletCreation ->
-            navController.navigate(walletCreatedScreenRoute)
+            navController.navigate(event)
 
         NavigateUp -> navController.navigateUp()
 

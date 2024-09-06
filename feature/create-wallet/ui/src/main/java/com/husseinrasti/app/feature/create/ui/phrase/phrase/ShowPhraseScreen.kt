@@ -47,6 +47,7 @@ internal fun ShowPhraseRoute(
     onClickNavigation: (NavigationEvent) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ShowPhraseViewModel = hiltViewModel(),
+    item: CreateWalletRouter.PhraseShowing,
 ) {
 
     var showAlert by remember { mutableStateOf(false) }
@@ -56,7 +57,13 @@ internal fun ShowPhraseRoute(
         PhraseAlertDialog(
             onClickSkip = {
                 showAlert = false
-                onClickNavigation(CreateWalletRouter.PhraseTesting)
+                onClickNavigation(
+                    CreateWalletRouter.PhraseTesting(
+                        passcode = item.passcode,
+                        isUse6Digits = item.isUse6Digits,
+                        biometric = item.biometric
+                    )
+                )
             },
             onClickOK = {
                 showAlert = false
@@ -74,13 +81,18 @@ internal fun ShowPhraseRoute(
     when (uiState) {
         is ShowPhraseUiState.Success -> {
             ShowPhraseScreen(
-                onClickNavigation = { event ->
-                    if (event is CreateWalletRouter.PhraseTesting
-                        && isTimeDiffOne(startTime, System.currentTimeMillis())
-                    ) {
+                onClickNavigation = onClickNavigation,
+                onNavigateToPhraseTesting = {
+                    if (isTimeDiffOne(startTime, System.currentTimeMillis())) {
                         showAlert = true
                     } else {
-                        onClickNavigation(CreateWalletRouter.PhraseTesting)
+                        onClickNavigation(
+                            CreateWalletRouter.PhraseTesting(
+                                passcode = item.passcode,
+                                isUse6Digits = item.isUse6Digits,
+                                biometric = item.biometric
+                            )
+                        )
                     }
                 },
                 modifier = modifier,
@@ -106,6 +118,7 @@ internal fun ShowPhraseRoute(
 @Composable
 private fun ShowPhraseScreen(
     onClickNavigation: (NavigationEvent) -> Unit,
+    onNavigateToPhraseTesting: () -> Unit,
     modifier: Modifier = Modifier,
     phrases: List<String>,
 ) {
@@ -124,7 +137,7 @@ private fun ShowPhraseScreen(
         Body(
             scroll = scroll,
             phrases = phrases,
-            onClick = { onClickNavigation(CreateWalletRouter.PhraseTesting) },
+            onClick = { onNavigateToPhraseTesting() },
         )
         MyTonWalletTopAppBar(
             onClickNavigation = { onClickNavigation(NavigateUp) },
@@ -381,6 +394,7 @@ private fun ShowPhrasePreview() {
     MyTonWalletContestTheme {
         ShowPhraseScreen(
             onClickNavigation = {},
+            onNavigateToPhraseTesting = {},
             phrases = fakePhrases
         )
     }

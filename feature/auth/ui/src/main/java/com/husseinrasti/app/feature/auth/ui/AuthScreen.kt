@@ -54,12 +54,12 @@ internal fun AuthScreenRoute(
     modifier: Modifier = Modifier,
     viewModel: AuthViewModel = hiltViewModel(),
 ) {
-    val state = viewModel.state.collectAsStateWithLifecycle(initialValue = null)
-    val isUse6Digits = viewModel.stateNumDigits.collectAsStateWithLifecycle(
+    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = null)
+    val isUse6Digits by viewModel.stateNumDigits.collectAsStateWithLifecycle(
         initialValue = null
-    ).value ?: false
+    )
 
-    when (state.value) {
+    when (state) {
         AuthState.Error -> {}
         AuthState.Loading -> {}
         AuthState.NavigateToMain -> onClickNavigation(NavigateToMain)
@@ -71,7 +71,7 @@ internal fun AuthScreenRoute(
             viewModel.check(biometric = biometric, passcode = passcode)
         },
         modifier = modifier,
-        isUse6Digits = isUse6Digits
+        isUse6Digits = isUse6Digits ?: false
     )
 }
 

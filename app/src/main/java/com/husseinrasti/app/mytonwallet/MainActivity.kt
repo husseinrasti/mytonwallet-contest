@@ -8,11 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.husseinrasti.app.component.theme.MyTonWalletContestTheme
-import com.husseinrasti.app.feature.auth.ui.navigation.authGraph
-import com.husseinrasti.app.feature.create.ui.navigation.createWalletGraph
 import com.husseinrasti.app.mytonwallet.navigation.MyTonWalletNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,14 +26,14 @@ class MainActivity : AppCompatActivity() {
         setContent {
             MyTonWalletContestTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    val state = viewModel.state.collectAsStateWithLifecycle()
-                    when (state.value) {
+                    val state by viewModel.state.collectAsStateWithLifecycle()
+                    when (state) {
                         MainState.Idle -> {}
                         MainState.NavigateToAuth ->
-                            MyTonWalletNavHost(startDestination = authGraph)
+                            MyTonWalletNavHost(isAuth = true)
 
                         MainState.NavigateToCreateWallet ->
-                            MyTonWalletNavHost(startDestination = createWalletGraph)
+                            MyTonWalletNavHost(isAuth = false)
                     }
                 }
             }

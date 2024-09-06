@@ -41,7 +41,6 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.husseinrasti.app.core.security.biometric.BiometricPromptManager
 import com.husseinrasti.app.core.security.biometric.findActivity
 
@@ -49,14 +48,19 @@ import com.husseinrasti.app.core.security.biometric.findActivity
 internal fun BiometricsRoute(
     onClickNavigation: (NavigationEvent) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: BiometricViewModel = hiltViewModel(),
+    item: CreateWalletRouter.Biometric,
 ) {
     BiometricsScaffoldScreen(
         onClickNavigation = onClickNavigation,
         modifier = modifier,
-        onChangeRoute = { enabled, event ->
-            viewModel.saveBiometric(enabled)
-            onClickNavigation(event)
+        onNavigateToPhraseShowing = { biometric ->
+            onClickNavigation(
+                CreateWalletRouter.PhraseShowing(
+                    passcode = item.passcode,
+                    isUse6Digits = item.isUse6Digits,
+                    biometric = biometric
+                )
+            )
         }
     )
 }
@@ -64,7 +68,7 @@ internal fun BiometricsRoute(
 @Composable
 private fun BiometricsScaffoldScreen(
     onClickNavigation: (NavigationEvent) -> Unit,
-    onChangeRoute: (Boolean, NavigationEvent) -> Unit,
+    onNavigateToPhraseShowing: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -76,7 +80,7 @@ private fun BiometricsScaffoldScreen(
         },
         content = {
             BiometricsScreen(
-                onChangeRoute = onChangeRoute,
+                onNavigateToPhraseShowing = onNavigateToPhraseShowing,
                 modifier = modifier.padding(it)
             )
         }
@@ -85,7 +89,7 @@ private fun BiometricsScaffoldScreen(
 
 @Composable
 fun BiometricsScreen(
-    onChangeRoute: (Boolean, NavigationEvent) -> Unit,
+    onNavigateToPhraseShowing: (Boolean) -> Unit,
     modifier: Modifier
 ) {
     MyTonWalletSurface(
@@ -131,7 +135,7 @@ fun BiometricsScreen(
                 }
 
                 BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
-                    onChangeRoute(true, CreateWalletRouter.PhraseShowing)
+                    onNavigateToPhraseShowing(true)
                 }
 
                 BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
@@ -186,7 +190,7 @@ fun BiometricsScreen(
             Spacer(Modifier.height(8.dp))
             ClickableText(
                 text = AnnotatedString(stringResource(R.string.btn_skip)),
-                onClick = { onChangeRoute(false, CreateWalletRouter.PhraseShowing) },
+                onClick = { onNavigateToPhraseShowing(false) },
                 style = TextStyle(
                     color = MaterialTheme.colors.secondaryVariant,
                     fontFamily = MaterialTheme.typography.body1.fontFamily,
