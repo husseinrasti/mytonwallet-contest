@@ -1,0 +1,41 @@
+require_relative '../../../node_modules/@capacitor/ios/scripts/pods_helpers'
+
+platform :ios, '13.0'
+use_frameworks!
+
+# workaround to avoid Xcode caching of Pods that requires
+# Product -> Clean Build Folder after new Cordova plugins installed
+# Requires CocoaPods 1.6 or newer
+install! 'cocoapods', :disable_input_output_paths => true
+
+def capacitor_pods
+  pod 'Capacitor', :path => '../../../node_modules/@capacitor/ios'
+  pod 'CapacitorCordova', :path => '../../../node_modules/@capacitor/ios'
+  pod 'CapacitorMlkitBarcodeScanning', :path => '../../../node_modules/@capacitor-mlkit/barcode-scanning'
+  pod 'CapacitorActionSheet', :path => '../../../node_modules/@capacitor/action-sheet'
+  pod 'CapacitorApp', :path => '../../../node_modules/@capacitor/app'
+  pod 'CapacitorAppLauncher', :path => '../../../node_modules/@capacitor/app-launcher'
+  pod 'CapacitorClipboard', :path => '../../../node_modules/@capacitor/clipboard'
+  pod 'CapacitorHaptics', :path => '../../../node_modules/@capacitor/haptics'
+  pod 'CapacitorStatusBar', :path => '../../../node_modules/@capacitor/status-bar'
+  pod 'CapgoCapacitorNativeBiometric', :path => '../../../node_modules/@capgo/capacitor-native-biometric'
+  pod 'CapgoNativeAudio', :path => '../../../node_modules/@capgo/native-audio'
+  pod 'MauricewegnerCapacitorNavigationBar', :path => '../../../node_modules/@mauricewegner/capacitor-navigation-bar'
+  pod 'CapacitorNativeSettings', :path => '../../../node_modules/capacitor-native-settings'
+  pod 'CapacitorPluginSafeArea', :path => '../../../node_modules/capacitor-plugin-safe-area'
+  pod 'CapacitorSecureStoragePlugin', :path => '../../../node_modules/capacitor-secure-storage-plugin'
+  pod 'CapacitorSplashScreen', :path => '../../plugins/capacitor-splash-screen'
+  pod 'NativeBottomSheet', :path => '../../plugins/native-bottom-sheet'
+  pod 'NativeDialog', :path => '../../plugins/native-dialog'
+  pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'
+end
+
+target 'MyTonWallet' do
+  capacitor_pods
+  # Add your Pods here
+  pod 'FloatingPanel', :git => 'https://github.com/mytonwalletorg/FloatingPanel', :commit => '1b6f19a6fa5590ed5bdb2e25b88ebc5346c5831b'
+end
+
+post_install do |installer|
+  assertDeploymentTarget(installer)
+end

@@ -1,0 +1,124 @@
+@import "../../../../styles/mixins";
+
+.portraitContainer {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100vw;
+}
+
+.container {
+  overflow: hidden;
+  flex-shrink: 0;
+
+  margin-bottom: 0.75rem;
+
+  border-radius: var(--border-radius-default);
+}
+
+.testnetWarning {
+  padding: 0.5rem;
+
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1rem;
+  color: var(--color-blue-button-text);
+  text-align: center;
+
+  background-color: var(--color-blue-button-background);
+}
+
+.wrapper {
+  cursor: var(--custom-cursor, pointer);
+
+  position: relative;
+
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.75rem;
+
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 0.9375rem;
+  color: var(--color-red-warning-text);
+
+  background-color: var(--color-red-warning-background);
+  border-radius: var(--border-radius-default);
+
+  transition: 150ms color, 150ms opacity !important;
+
+  &_landscape {
+    margin-top: 0;
+  }
+
+  &:active {
+    color: var(--color-red-warning-text-hover);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-red-warning-text-hover);
+    }
+  }
+}
+
+.icon {
+  position: relative;
+  top: 0.125rem;
+  /* stylelint-disable-next-line plugin/whole-pixel */
+  left: -0.03125rem;
+
+  font-size: 0.8125rem;
+  line-height: 0.625rem;
+  color: var(--color-red-warning-text-70);
+  vertical-align: 0;
+}
+
+.text {
+  margin: 0.25rem 0 0;
+  padding: 0;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 0.75rem;
+  color: var(--color-red-warning-text-70);
+}
+
+.closeButton {
+  cursor: var(--custom-cursor, pointer);
+
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  padding: 0 !important;
+
+  font-size: 1.25rem !important;
+  color: var(--color-red-warning-text) !important;
+
+  background-color: var(--color-red-warning-button-background) !important;
+  border: none;
+  border-radius: 50% !important;
+
+  transition: background-color 150ms;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-red-warning-button-background-hover) !important;
+  }
+
+  &:active {
+    // Optimization
+    transition: none;
+  }
+
+  :global(html.animation-level-0) & {
+    transition: none !important;
+  }
+}

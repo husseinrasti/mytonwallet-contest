@@ -1,0 +1,111 @@
+@use "sass:color";
+
+@import "../../styles/variables";
+
+@import "../../styles/mixins";
+
+$scrollOffset: 0.1875rem;
+
+.portraitContainer {
+  display: flex;
+  flex-direction: column;
+
+  height: auto;
+  min-height: calc(var(--vh, 1vh) * 100);
+  max-height: none;
+  padding: 0 0.75rem !important;
+
+  // Fix for opera, dead zone of 37 pixels in extension window on windows
+  :global(html.is-windows.is-opera.is-extension) & {
+    padding-top: 1.875rem !important;
+  }
+
+  @include adapt-padding-to-scrollbar(0.75rem, !important);
+
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    @include respond-above(xs) {
+      padding-bottom: max(env(safe-area-inset-bottom), 1rem) !important;
+    }
+  }
+
+  @supports (padding-top: env(safe-area-inset-top)) {
+    min-height: calc(var(--vh, 1vh) * 100 - env(safe-area-inset-top));
+  }
+
+  .head {
+    width: 100%;
+    max-width: 27rem;
+    margin: 0 auto;
+  }
+}
+
+.head {
+  position: relative;
+  z-index: 3;
+}
+
+.landscapeContainer {
+  display: grid;
+  grid-template-columns: 21.5rem 1fr;
+
+  /* 948px + 1rem padding on both sides */
+  max-width: 61.25rem;
+  height: 100%;
+  max-height: calc(var(--vh, 1vh) * 100);
+  margin: auto;
+  padding: 1rem 1rem 0;
+
+  :global(html.is-electron:not(.is-linux)) & {
+    height: calc(100vh - 3rem);
+    padding-top: 0;
+  }
+
+  // Fix for Opera, dead zone of 37 pixels in extension window on Windows
+  :global(html.is-windows.is-opera.is-extension) & {
+    padding-top: 2.3125rem;
+  }
+
+  :global(html.is-ios) & {
+    max-width: none;
+
+    @media (min-width: 1100px) and (min-height: 700px) {
+      grid-template-columns: 24.5rem 1fr;
+    }
+  }
+
+  .sidebar {
+    margin-right: #{$scrollOffset};
+    padding-right: calc(0.75rem - var(--scrollbar-width) - #{$scrollOffset});
+    // Due to the presence of `.LandscapeActions__contentFooter`, which is 1rem high, we increase the indentation at the bottom by its size
+    padding-bottom: calc(max(env(safe-area-inset-bottom), 1rem) + 1rem);
+  }
+
+  .main {
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+  }
+}
+
+.main,
+.sidebar {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  min-height: 0;
+
+  @include respond-below(xs) {
+    padding-bottom: 1rem;
+  }
+}
+
+.main {
+  overflow: hidden;
+}
+
+.sidebar {
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  // Add some space between scrollbar and content
+  padding-right: #{$scrollOffset};
+}

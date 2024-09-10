@@ -1,0 +1,652 @@
+$auth_intro: |
+  **Безопасно** храните криптовалюту и
+  совершайте платежи в блокчейне
+  **со скоростью света**.
+Create New Wallet: Создать новый кошелёк
+Import From %1$d Secret Words: Восстановить из %1$d секретных слов
+More about MyTonWallet: Подробнее о MyTonWallet
+Creating Wallet...: Создаём кошелёк...
+On the count of three...: Сосчитайте до трёх...
+Back Up: Показать слова
+Passwords must be equal.: Пароли не совпадают.
+To protect your wallet as much as possible, use a password with: Для обеспечения максимальной безопасности кошелька пароль должен содержать
+$auth_password_rule_8chars: не менее 8 символов
+$auth_password_rule_one_small_char: одну строчную букву
+$auth_password_rule_one_capital_char: одну заглавную букву
+$auth_password_rule_one_digit: одну цифру
+$auth_password_rule_one_special_char: один символ
+The wallet is imported: Кошелёк импортирован
+The wallet is ready: Всё готово
+Create a password to protect it.: А теперь создайте надёжный пароль.
+Enter your password: Введите пароль
+Enter your password...: Введите пароль...
+...and repeat it: ...и ещё раз
+Cancel: Отмена
+Insecure Password: Ненадёжный пароль
+Your have entered an insecure password, which can be easily guessed by scammers.: Ваш пароль недостаточно надёжный и может быть скомпрометирован.
+Continue or change password to something more secure?: Продолжить или изменить пароль на более надёжный?
+Change: Изменить
+"%1$d Secret Words": "%1$d секретных слова"
+$auth_import_mnemonic_description: |
+  Вы можете восстановить доступ к кошельку, используя %1$d секретных слова, которые вы сохранили при создании кошелька.
+Let’s make sure your secrets words are recorded correctly.: Давайте убедимся, что все слова записаны правильно.
+$mnemonic_check_words_list: Пожалуйста, введите слова **%1$s** в соответствующие поля.
+$mnemonic_check_error: Введённые слова не совпадают со словами из списка. Попробуйте ещё раз.
+$mnemonic_list_description: |
+  Запишите слова
+  в **правильном порядке** и сохраните их
+  **в надёжном месте**.
+$mnemonic_warning: |
+  **Никому** не сообщайте, не показывайте
+  и не вводите **нигде**.
+Let's Check: Давайте проверим
+Let's Check!: Давайте проверим!
+Safety Rules: Правила безопасности
+$safety_rules_one: |
+  Сейчас появятся **секретные слова**.
+  Запишите их в **правильном порядке** и сохраните в **надёжном месте**.
+$safety_rules_two: Они позволяют **получить доступ к кошельку**, если вы забудете свой пароль или потеряете доступ к этому устройству.
+$safety_rules_three: Если кто-то увидит эти слова, ваши средства **могут быть украдены**. **Никому их не отправляйте** — даже разработчикам и техподдержке.
+Understood: Понятно
+Congratulations!: Поздравляем!
+Continue: Продолжить
+Close: Закрыть
+Back: Назад
+Search...: Поиск...
+Main menu: Основное меню
+TON Proxy: TON Proxy
+Toggle TON Proxy: Переключить TON Proxy
+TON Magic: TON Magic
+Toggle TON Magic: Переключить TON Magic
+Open Telegram Web: Открыть Telegram Web
+Back Up Secret Words: Резервная копия
+Settings: Настройки
+About: О MyTonWallet
+Exit: Выйти
+Remove Wallet: Выход
+Something went wrong.: Упс, что-то пошло не так.
+Something went wrong: Упс, что-то пошло не так
+Logo: Логотип
+$about_description1: Безопасно храните криптовалюту, пользуйтесь децентрализованными приложениями и совершайте платежи в блокчейне **со скоростью света**.
+$about_description2: Кошелёк **управляется только вами**. Разработчики **не имеют доступа** к вашим средствам, истории браузера или любой другой информации.
+What is TON Proxy?: Что такое TON Proxy?
+$about_extension_description1: TON Proxy предоставляет доступ к **децентрализованному интернету** и сайтам TON.
+More info and demo.: Больше информации и демо-версия.
+$about_extension_description2: TON Magic обеспечивает встроенную **интеграцию с Telegram**, используя официальную веб-версию.
+$about_extension_description3: Включить, чтобы отправлять и получать переводы от любого пользователя Telegram.
+$about_proxy_magic_title: А что насчёт %ninja% TON Proxy и %unicorn% TON Magic?
+$about_proxy_magic_description: Чтобы наслаждаться **децентрализованным интернетом**, **сайтами TON** и встроенной **интеграцией с Telegram**, установите %extension_link%.
+$about_extension_link_text: "**Расширение MyTonWallet**"
+Is it open source?: А исходный код открыт?
+$about_wallet_github: Да, вот наш %github_link%.
+$about_github_link_text: "**репозиторий в GitHub**"
+Is there a community?: Существует ли комьюнити?
+$about_wallet_community: А как же, добро пожаловать в наш %community_link%.
+$about_community_link_text: "**Telegram-канал**"
+Currency History: График курса
+$add_account_description1: |
+  **MyTonWallet** позволяет легко переключаться между **несколькими учётными записями**.
+Enter Password: Введите пароль
+Send: Отправить
+Add Wallet: Добавить
+Done: Готово
+Delete: Удалить
+Delete Saved Address: Удалить сохранённый адрес
+Are you sure you want to remove this address from your saved ones?: Уверены, что хотите удалить сохранённый адрес кошелька?
+You will be able to save it again via Transaction Info with this address.: Вы сможете сохранить его снова, открыв любой перевод с этим адресом.
+Address removed from saved: Адрес кошелька удалён из сохранённых
+Warning!: Важно!
+Log Out: Выход есть
+$logout_without_backup_warning: Резервная копия кошелька не создана. Доступ к токенам и NFT будет ограничен, если вы выйдете из системы.
+$logout_accounts_without_backup_warning: Резервная копия не была создана для %links%. Если вы продолжите выход, доступ **может быть утерян**.
+$logout_warning: Кошелёк будет удалён только **на этом устройстве**. Вы всегда можете восстановить его, используя **%1$d секретных слова**.
+$logout_confirm: Выйти из **всех** кошельков
+Your address was copied!: Адрес скопирован!
+Show QR Code: Показать QR-код
+Create Deposit Link: Ссылка на депозит
+QR Code: QR-код
+$receive_invoice_description: |
+  Укажите сумму и назначение платежа,
+  если это необходимо.
+Amount: Сумма
+Comment: Комментарий
+Comment or Memo: Комментарий или Memo
+Share this URL to receive TON: Поделиться ссылкой
+Invoice link was copied!: Ссылка скопирована!
+Theme: Тема
+Language: Язык
+Enable Animations: Включить анимацию
+Base Currency: Базовая валюта
+Investor View: Режим инвестора
+Toggle Investor View: Переключить в режим инвестора
+Hide Tiny Transfers: Скрывать мелкие переводы
+Toggle Hide Tiny Transfers: Переключить отображение мелких переводов
+Network: Сеть
+Developer Options: Инструменты разработчика
+Confirmation: Подтверждение
+Signing Data: Данные для подписи
+Contract Initialization Data: Данные для инициализации контракта
+$dont_have_required_token: У вас нет необходимого токена для отправки, но его можно обменять.
+$unknown_token_address: Неизвестный адрес токена.
+$dont_have_required_nft: У вас нет необходимого NFT для отправки.
+$state_init_requires_bin: Данные инициализации контракта требуют параметра "bin".
+$state_init_invalid: Неверные данные инициализации контракта.
+$signature_warning: Подписание данных влечёт риски. Используйте эту опцию, только если вы доверяете их источнику.
+Sign: Подписать
+Done!: Готово!
+Signing was confirmed!: Подпись подтверждена!
+Transaction Info: Информация о переводе
+Transaction in progress: Перевод выполняется
+Comment was copied!: Комментарий скопирован!
+View Transaction on %ton_explorer_name%: Посмотреть перевод в %ton_explorer_name%
+Sender: Отправитель
+Recipient: Получатель
+Address was copied!: Адрес скопирован!
+Repeat: Повторить
+Receive: Получить
+Switch Account: Сменить аккаунт
+Copy wallet address: Скопировать адрес
+View address on %ton_explorer_name%: Посмотреть адрес в %ton_explorer_name%
+You have just created a new wallet: Поздравляем! Вы только что создали новый кошелёк
+You can now transfer your tokens from another wallet or exchange.: Теперь вы можете пополнить его с другого кошелька или биржи.
+Assets: Активы
+Activity: Лента
+NFT: NFT
+No NFTs yet: Пока у вас нет NFT
+$nft_explore_offer: |
+  Но вы можете просмотреть
+  существующие коллекции.
+Open Getgems: Открыть Getgems
+Transaction is not completed: Перевод не выполнен
+Received: Получено
+Sent: Отправлено
+$transaction_from: от %address%
+$transaction_to: на %address%
+Wallet is not backed up: Резервная копия кошелька не создана
+Testnet Version: Версия Testnet
+Error reading clipboard: Ошибка буфера обмена
+$fee_value: "Комиссия: %fee%"
+Loading...: Загрузка...
+Recipient Address: Адрес получателя
+Wallet address or domain: Адрес кошелька или домен
+Incorrect address: Неверный адрес
+Incorrect address.: Неверный адрес.
+Paste: Вставить
+Insufficient balance: Недостаточный баланс
+InsufficientBalance: Недостаточный баланс
+Optional: При необходимости
+$send_token_symbol: Отправить %1$s
+Is it all ok?: Всё верно?
+Receiving Address: Адрес получателя
+Fee: Комиссия
+Edit: Исправить
+Confirm: Подтвердить
+Coins have been sent!: Перевод отправлен!
+Details: Инфо
+Change password visibility: Изменить видимость пароля
+Amount value: Значение
+Save Address: Сохранить адрес
+Name: Имя
+Save: Сохранить
+Copy: Скопировать
+Remove From Saved Addresses: Удалить сохранённый адрес
+Add To Saved Addresses: Добавить в Сохранённые адреса
+View Address on %ton_explorer_name%: Открыть в %ton_explorer_name%
+No suggestions, you're on your own!: Ничего не найдено :(
+Play Sounds: Включить звуки
+Focus on asset value rather than current balance: Фокус на стоимости активов вместо текущего баланса
+$tiny_transfers_help: Скрыть переводы стоимостью менее $%value%. Имейте в виду — такие суммы часто отправляют спамеры и мошенники.
+Today: Сегодня
+Yesterday: Вчера
+Now: Сейчас
+$receive_ton_description: Вы можете поделиться своим адресом, отсканировать QR-код или создать ссылку на депозит для получения криптовалюты.
+Your address: Ваш адрес
+Wrong password, please try again.: Неправильный пароль, попробуйте ещё раз.
+Appearance: Внешний вид
+Light: Светлая
+Dark: Тёмная
+System: Системная
+Stake TON: Стейкинг
+Earn from your tokens while holding them: Получайте пассивный доход от хранения TON на надёжном официальном смарт-контракте
+$est_apy_val: Доходность ~%1$d%
+Why this is safe: Почему это безопасно
+Why is staking safe?: Это точно безопасно?
+$safe_staking_description1: Стейкинг **полностью децентрализован** и управляется **официальными смарт-контрактами** TON Liquid Staking.
+$safe_staking_description2: Ваш депозит будет использован для валидации транзакций в блокчейне в рамках механизма **proof-of-stake**.
+$safe_staking_description3: Вы можете вывести депозит с заработанными процентами **в любой момент** — средства переведутся на ваш основной счёт **в течение двух дней**.
+$min_value: Мин. %value%
+Est. balance in a year: Ожидаемый баланс через год
+Confirm Staking: Подтвердить
+Confirm operation with your password: Введите пароль для подтверждения
+Coins have been staked!: Депозит отправлен!
+View: Обзор
+Stake More: Добавить
+Staking: Стейкинг
+Currently Staked: Текущий депозит
+Unstake: Вывести
+Earning History: История начислений
+$total: "Всего: %value%"
+Unstake TON: Вывести депозит
+$unstake_information_with_time: Текущий депозит будет полностью отправлен обратно на ваш кошелёк через %time%.
+Amount to unstake: Сумма к выводу
+Confirm Unstaking: Подтвердить вывод
+Request for unstaking is sent!: Запрос на вывод отправлен!
+$unstaking_when_receive: Депозит будет выведен через %time%.
+$unstake_insufficient_balance: Вам необходимо иметь %balance% на вашем основном балансе, чтобы отправить заявку на вывод депозита.
+at %apy_value%: при %apy_value%
+Staked: Стейкинг
+Unstake Requested: Запрос депозита
+Unstaked: Вывод стейка
+The network fee has slightly changed, try sending again.: Комиссия за сеть немного изменилась, попробуйте отправить ещё раз.
+Transfer was unsuccessful. Try again later.: С переводом что-то пошло не так. Попробуйте ещё раз.
+Unstaking was unsuccessful. Try again later.: Не удалось вывести депозит. Попробуйте ещё раз.
+Staking was unsuccessful. Try again later.: Не удалось внести депозит. Попробуйте ещё раз.
+Invalid amount: Некорректная сумма
+Invalid address: Некорректный адрес
+Domain is not connected to a wallet: Домен не подключён к кошельку
+Unexpected error: Ошибочка вышла
+Unexpected Error: Непредвиденная ошибка
+Earn: Стейкинг
+Earning: Стейкинг
+InvalidAmount: Некорректная сумма
+InvalidToAddress: Некорректный адрес получателя
+DomainNotResolved: Ошибка резолвинга домена
+You can save this address for quick access while sending.: Вы можете сохранить этот адрес для быстрого доступа при отправке.
+Stake Again: Повторить депозит
+Earned: Заработано
+Connect Dapp: Подключить приложение
+Select wallet to use on this dapp: Выберите кошелёк для использования с этим приложением
+Connect: Подключить
+Dapp Permissions: Разрешения для приложения
+$dapp_can_view_balance: "Для %dappname% будет доступен ваш адрес кошелька и баланс."
+Send Transaction: Отправить перевод
+Payload: Служебные данные
+$many_transactions: "%1$d перевода"
+Total Amount: Общая сумма
+Unstaking: Вывод
+"Handle ton:// links": Обрабатывать ссылки ton://
+Back up wallet to have full access to it: Сделайте резервную копию кошелька, чтобы иметь к нему полный доступ
+Consider More Secure Version: Повысьте безопасность кошелька
+Install our native app or browser extension.: Установите наше приложение или браузерное расширение.
+Scam: Скам
+Scam comment is hidden.: Комментарий скрыт.
+Display: Показать
+$dapp_transfer_tokens_payload: Перевод %amount% с вашего аккаунта на %address%
+Nested Transaction: Вложенная транзакция
+Connected Dapps: Подключённые приложения
+Disconnect All Dapps: Отключить все приложения
+Disconnect: Отключить
+Disconnect Dapp: Отключить приложение
+Disconnect Dapps: Отключить приложения
+Are you sure you want to disconnect?: Вы уверены, что хотите отключить %dappname%?
+Are you sure you want to disconnect all websites?: Вы уверены, что хотите отключить все сайты?
+$dapps-description: Вы можете подключиться к децентрализованным приложениям, поддерживающим MyTonWallet. Они могут просматривать адрес кошелька, баланс и запрашивать операции.
+Logged in with MyTonWallet: Подключены с помощью MyTonWallet
+No active connections: Нет активных подключений
+Other: Другие
+Assets & Activity: Активы и лента
+Token Settings: Настройки токенов
+My Tokens: Мои токены
+Add Token: Добавить токен
+Delete Token: Удалить токен
+Are you sure you want to delete?: Вы уверены, что хотите удалить %token%?
+Hide Tokens With No Cost: Скрыть токены без стоимости
+Sort By Cost: Сортировать по стоимости
+Update MyTonWallet: Обновить MyTonWallet
+Connect Ledger: Подключить Ledger
+Connecting to your Ledger...: Подключение к Ledger...
+Failed to connect: Не удалось подключиться
+Ledger Connected!: Ledger подключён!
+Select Ledger Wallets: Выберите кошельки Ledger
+"%1$d Selected": "%1$d Выбрано"
+Add: Добавить
+Try Again: Повторить
+Driver: Драйвер
+Connect your Ledger to PC: Подключите ваш Ledger к компьютеру
+Unlock it and open the TON App: Разблокируйте его и откройте приложение TON
+Maybe you need to check the password or change the driver.: Возможно, вам нужно проверить пароль или сменить драйвер.
+Confirm via Ledger: Подтвердить через Ledger
+Please confirm transaction on your Ledger: Пожалуйста, подтвердите транзакцию в вашем Ledger
+Declined: Отклонено
+Create Wallet: Создать кошелёк
+Switch to the newly opened tab to connect Ledger.: Переключитесь на только что открытую вкладку, чтобы подключить Ledger.
+Once connected, switch back to this window to proceed.: После подключения вернитесь в это окно, чтобы продолжить.
+Not all transactions were sent successfully: Не все транзакции были успешно отправлены
+The time on your device is incorrect, sync it and try again: Время на вашем устройстве некорректно, синхронизируйте его и попробуйте снова
+Name or Address...: Имя или адрес...
+Such error, many tabs: Неактивная вкладка
+$many_tabs_error_description: |
+  MyTonWallet поддерживает только одну активную вкладку с приложением.
+  Пожалуйста, перезагрузите эту страницу, чтобы продолжить использовать эту вкладку, или закройте её.
+Reload App: Перезагрузить приложение
+Please confirm operation on your Ledger: Пожалуйста, подтвердите операцию на вашем Ledger
+Token Not Found: Токен не найден
+Try another keyword or address.: Попробуйте другое ключевое слово или адрес.
+Decrypt: Расшифровать
+Encrypted Message: Зашифрованное сообщение
+Message is encrypted.: Сообщение зашифровано.
+$dapp_ledger_warning1: Вы собираетесь отправить многоадресную транзакцию, используя свой кошелёк **Ledger**. Вам нужно будет подписать каждую базовую транзакцию **по одной вручную**.
+$dapp_ledger_warning2: Пожалуйста, не торопитесь и не прерывайте процесс.
+Agree: Согласен
+SwapTitle: Обмен
+Swap: Обменять
+You sell: Вы продаёте
+You buy: Вы покупаете
+Swap Details: Детали обмена
+Blockchain Fee: Комиссия блокчейна
+Routing Fees: Комиссии маршрутизации
+Included: Вкл. в цену
+Price Impact: Влияние на цену
+Minimum Received: Минимально получите
+Slippage: Проскальзывание
+$swap_from_to: Обменять %from% %icon% %to%
+The exchange rate is below market value!: Курс обмена на %value% ниже рыночной стоимости!
+Invalid Pair: Недопустимая пара
+We do not recommend to perform an exchange, try to specify a lower amount.: Не рекомендуем выполнять обмен, попробуйте указать меньшую сумму.
+$swap_routing_fees_tooltip: Комиссии децентрализованной биржи и приложения (~0,875%) уже включены в цену, которую вы видите, и не взимаются дополнительно.
+$swap_minimum_received_tooltip1: Это наименьшее количество новых токенов, которое вы получите от этого обмена, учитывая текущие условия рынка, допустимое проскальзывание и потенциальное влияние на цену.
+$swap_minimum_received_tooltip2: Это ожидаемое минимальное значение, но, если условия сильно изменятся во время обработки вашего обмена, итоговая сумма может быть меньше.
+$swap_price_impact_tooltip1: Это показывает, насколько ваша сделка может изменить цену токена.
+$swap_price_impact_tooltip2: Большие сделки могут сильнее повлиять на цену. В целом, меньшее значение лучше.
+$swap_slippage_tooltip1: Здесь устанавливается, насколько цена может измениться, прежде чем ваш обмен будет обработан.
+$swap_slippage_tooltip2: Если во время обработки вашего обмена цена изменится больше, чем на это значение, ваш заказ будет отменён.
+Coins have been swapped!: Токены были обменяны!
+Slippage not specified: Проскальзывание не указано
+Slippage too high: Проскальзывание слишком большое
+Not Enough %symbol%: Недостаточно %symbol%
+Use Responsibly: Используйте ответственно
+$auth_responsibly_description1: |
+  MyTonWallet — это **некастодиальный** кошелёк, что означает, что **только вы** имеете полный контроль и, самое главное, **полную ответственность** за свои средства.
+$auth_responsibly_description2: |
+  Ваши закрытые ключи хранятся на вашем устройстве и могут быть подвержены **хакерским атакам**. Если ваш компьютер заражен **вредоносной программой**, ваши средства могут быть украдены.
+$auth_responsibly_description3: |
+  Команда MyTonWallet **не несет ответственности** за сохранность ваших средств, как и производитель вашего компьютера или интернет-провайдер.
+$auth_responsibly_description4: |
+  **Никогда** не храните все свои средства в одном месте. **Разнообразьте** и используйте различное программное и аппаратное обеспечение. Всегда **проводите собственные исследования** и узнавайте больше о криптобезопасности.
+Start Wallet: Начать использование
+$auth_backup_warning_notice: |
+  Теперь вам нужно вручную **сделать резервную копию** секретных слов на случай, если вы забудете пароль или потеряете доступ к этому устройству.
+Later: Позже
+Back Up Now: Показать слова сейчас
+I have read and accept this information: Я прочитал и принимаю эту информацию.
+$ledger_verify_address: Всегда проверяйте вставленный адрес, используя Ledger.
+$ledger_not_ready: Ledger не подключён или приложение TON не открыто.
+Verify now: Проверить сейчас
+Invalid address format. Only URL Safe Base64 format is allowed.: Некорректный формат адреса. Разрешен только URL Safe Base64 формат.
+$auth_backup_description1: |
+  Вы создали новый **безопасный кошелёк**,
+  доступ к которому **есть только у вас**.
+$auth_backup_description2: |
+  Однако важно помнить:
+  **особые возможности**
+  требуют **особой ответственности**!
+$auth_backup_description3: |
+  Сейчас необходимо сделать
+  **резервную копию** секретных слов.
+  Это поможет, если вы потеряете доступ
+  к этому устройству или забудете пароль.
+Swap Placed: Обмен размещён
+Swapping: Идёт обмен
+Swapped: Обмен
+Swap Failed: Обмен не выполнен
+Swap Again: Повторить обмен
+Terms of Use: Условия использования
+Privacy Policy: Политика конфиденциальности
+Insufficient liquidity: Недостаточно ликвидности
+This address is new and never received transfers before.: Этот адрес новый и ранее не получал переводов.
+Create Backup: Создание резервной копии
+Sending: Отправка
+Failed: Ошибка
+Refunded: Возвращено
+On Hold: Удержан
+Expired: Истёк
+In Progress: В процессе
+Waiting for Payment: Ожидание оплаты
+Blockchain: Блокчейн
+Your address on another blockchain: Ваш адрес в другом блокчейне
+Please provide an address of your wallet in %blockchain% blockchain to receive bought tokens.: Пожалуйста, укажите адрес вашего кошелька в блокчейне %blockchain% для получения купленных токенов.
+The time for sending coins is over.: Время отправки монет истекло.
+You have not sent the coins to the specified address.: Вы не отправили монеты на указанный адрес.
+$swap_changelly_to_ton_description1: "Отправьте %value% на этот адрес в блокчейне %blockchain% в течение %time%"
+Exchange failed and coins were refunded to your wallet.: Обмен не удался и монеты были возвращены на ваш кошелёк.
+$swap_changelly_kyc_security: "Пожалуйста, свяжитесь с командой безопасности по адресу **%email%** и предоставьте идентификатор транзакции, чтобы пройти процедуру KYC:"
+Swap Expired: Обмен истёк
+Swap On Hold: Обмен удержан
+Swap Refunded: Обмен возвращен
+Address for %blockchain% transfer: Адрес для перевода %blockchain%
+Cross-chain exchange provided by Changelly: Сервис предоставлен Changelly
+$swap_changelly_agreement_message: Продолжая, вы соглашаетесь с %terms% и %policy% и понимаете, что транзакция может вызвать проверку в соответствии с %kyc%.
+$swap_changelly_terms_of_use: условиями использования
+$swap_changelly_privacy_policy: политикой конфиденциальности
+Password must contain %length% digits.: Пароль должен содержать %length% цифры.
+Deposit Link: Ссылка для пополнения
+$swap_changelly_from_ton_description: "Токены скоро будут отправлены на ваш адрес в блокчейне %blockchain%:"
+Please note that it may take up to a few hours for tokens to appear in your wallet.: Появление купленных токенов в вашем кошельке может занять до нескольких часов.
+Minimum amount: Минимум %value%
+Maximum amount: Максимум %value%
+Display Tray Icon: Иконка на панели задач
+Enable Auto-Updates: Включить автообновления
+Biometric Authentication: Биометрическая аутентификация
+If you turn off biometric protection, you will need to create a password.: Если вы отключите биометрическую защиту, вам потребуется создать пароль.
+Enter your current password: Введите ваш текущий пароль
+Turn On Biometrics: Включение биометрии
+Please confirm transaction using biometrics.: Пожалуйста, подтвердите транзакцию с помощью биометрии.
+Enabling biometric confirmation will reset the password.: Включение биометрического подтверждения приведет к сбросу пароля.
+Biometric Registration: Подключение биометрии
+Step 1 of 2. Registration: Шаг 1 из 2. Регистрация
+Step 2 of 2. Verification: Шаг 2 из 2. Проверка
+Biometric setup failed.: Настроить биометрию не удалось.
+Biometric confirmation failed.: Подтвердить биометрию не удалось.
+Failed to disable biometrics.: Не удалось отключить биометрию.
+Biometric Confirmation: Подтверждение биометрии
+Please verify the operation.: Пожалуйста, подтвердите операцию.
+Create Password: Придумайте пароль
+Complete: Завершить
+Verification: Проверка
+Create a password or use biometric authentication to protect it.: Создайте пароль или используйте биометрическую аутентификацию для его защиты.
+Connect Biometrics: Подключить биометрию
+Use Password: Использовать пароль
+Biometrics Disabled: Биометрия отключена
+Biometrics Enabled: Биометрия включена
+A request is already pending: Подключение биометрии уже выполняется
+Please confirm operation using biometrics.: Пожалуйста, подтвердите операцию с помощью биометрии.
+Scan QR Code: Сканировать QR-код
+Permission denied. Please grant camera permission to use the QR code scanner.: Доступ запрещён. Пожалуйста, дайте камере разрешение на использование сканера QR-кода.
+Unsupported QR code format: Неподдерживаемый формат QR-кода
+An error on the server side. Please try again.: Ошибка на стороне сервера. Пожалуйста, попробуйте ещё раз.
+Unrecognized QR Code: Нераспознанный QR-код
+$fee_value_almost_equal: Комиссия ≈ %fee%
+Address was saved!: Адрес сохранён!
+US Dollar: Доллар США
+Euro: Евро
+Ruble: Рубль
+Yuan: Юань
+$max_balance: "Максимум: %balance%"
+$unstake_information_instantly: Вы получите свой депозит мгновенно
+Select Token: Выбрать токен
+MY: МОИ
+POPULAR: ПОПУЛЯРНЫЕ
+Not Found: Не найдено
+Wallet is ready!: Кошелёк готов!
+Wallet is imported!: Кошелёк импортирован!
+Create a code to protect it: Создайте код для его защиты
+Enter your code again: Введите свой код ещё раз
+Codes don't match: Коды не совпадают
+Code set successfully: Код успешно установлен
+Use Biometrics: Используйте биометрию
+Use Touch ID: Используйте Touch ID
+Use Face ID: Используйте Face ID
+You can connect your biometric data for more convenience: Для большего удобства вы можете подключить свои биометрические данные
+Connect Touch ID: Подключить Touch ID
+Connect Face ID: Подключить Face ID
+Not Now: Не сейчас
+Biometric Authentification: Биометрическая аутентификация
+Touch ID: Touch ID
+Face ID: Face ID
+Turn Off Touch ID: Отключить Touch ID
+Turn Off Face ID: Отключить Face ID
+Turn Off Biometrics: Отключить биометрию
+Enter code: Введите код
+Enter code or use Face ID: Введите код или используйте Face ID
+Enter code or use Touch ID: Введите код или используйте Touch ID
+Enter code or use biometrics: Введите код или используйте биометрию
+Wrong code, please try again: Неверный код, попробуйте ещё раз
+Scan your fingerprint: Отсканируйте свой отпечаток пальца
+Incorrect code, please try again.: Неверный код, пожалуйста, попробуйте снова.
+Correct: Правильно
+Confirm Action: Подтвердите действие
+Confirm Swap: Подтвердите обмен
+"%amount% to %address%": "%amount% на %address%"
+"%amount_from% to %amount_to%": "%amount_from% на %amount_to%"
+Failed to enable biometrics.: Не удалось включить биометрию.
+Please try to confirm your biometrics again.: Пожалуйста, попробуйте ещё раз.
+Unknown error.: Неизвестная ошибка.
+Are you sure you want to disable Face ID?: Вы уверены, что хотите отключить Face ID?
+Are you sure you want to disable Touch ID?: Вы уверены, что хотите отключить Touch ID?
+Are you sure you want to disable biometrics?: Вы уверены, что хотите отключить биометрию?
+Yes: Да
+Declined. Please try to confirm transaction using biometrics again.: Отклонено. Пожалуйста, попробуйте ещё раз подтвердить транзакцию с помощью биометрии.
+No Activity: Нет активности
+Add / Buy: Пополнить
+Buy with Card: Покупка с карты
+Buy with Crypto: Покупка за криптовалюту
+Receive with QR or Invoice: Пополнение через QR или счёт
+Cannot load widget: Невозможно загрузить виджет
+Explore: Обзор
+No partners yet: Ещё нет партнеров
+Clear: Очистить
+Get TON: Получить TON
+Declined. Please try to confirm operation using biometrics again.: Отклонено. Пожалуйста, попробуйте ещё раз подтвердить операцию с помощью биометрии.
+$unstake_up_to_information: Мгновенно – до %value%
+$all_balance: "Все: %balance%"
+$unstaking_not_enough_balance: Вам необходимо иметь %value% на вашем основном балансе, чтобы продолжить вывод.
+$ledger_verify_address_on_device: Пожалуйста, проверьте адрес в вашем Ledger.
+Wallet Versions: Версии кошельков
+$read_more_about_wallet_version: Узнайте больше о типах контрактов кошельков на %ton_link%.
+$current_wallet_version: Ваша текущая версия кошелька %version%.
+You have tokens on other versions of your wallet. You can import them from here.: У вас есть токены на других версиях вашего кошелька. Вы можете импортировать их отсюда.
+$wallet_switch_version_1: Вы также можете %action%.
+$wallet_switch_version_2: переключиться на другую версию кошелька
+or import from: или импортировать из
+$insufficient_fee: "Недостаточно для комиссии: %fee%"
+Required: Обязательно
+Comment is too long.: Комментарий слишком длинный.
+Memo: Memo
+Memo was copied!: Memo был скопирован!
+$hide_tokens_no_cost_help: Скрыть токены стоимостью менее $%value%. Имейте в виду — такие токены часто отправляют спамеры и мошенники. На этом же экране ниже вы можете скрыть отдельные токены.
+No internet connection. Please check your connection and try again.: Отсутствует подключение к интернету. Пожалуйста, проверьте своё соединение и попробуйте снова.
+To use this feature, first enable Face ID in your phone settings.: Чтобы использовать эту функцию, сначала активируйте идентификацию лица в настройках телефона.
+To use this feature, first enable biometrics in your phone settings.: Чтобы использовать эту функцию, сначала активируйте биометрию в настройках телефона.
+Open Settings: Открыть настройки
+You are about to transfer an important service token, which is needed to withdraw your deposit from staking.: Вы собираетесь передать важный сервисный токен, который необходим для вывода вашего депозита из стейкинга.
+No Price: Нет цены
+$ledger_unsupported_ton_connect: TonConnect не поддерживается версией вашего Ledger TON App. Пожалуйста, обновите его с помощью Ledger Live.
+$ledger_not_supported_operation: Данная операция не поддерживается вашей версией Ledger TON App. Пожалуйста, обновите его с помощью Ledger Live.
+$dapp_transfer_tokens_burn: Сжигание %amount%
+$dapp_dns_set_wallet_payload: Изменение привязанного кошелька домена %domain% на %address%
+$dapp_dns_delete_wallet_payload: Удаление привязанного кошелька домена %domain%
+$dapp_dns_change_record_payload: Изменение %category% записи домена %domain% на %value%
+$dapp_dns_delete_record_payload: Удаление %category% записи домена %domain%
+$dapp_token_bridge_pay_swap_payload: Подтверждение обмена через кроссчейн-мост
+$dapp_liquid_staking_deposit_payload: Депозит в ликвидный стейкинг
+$dapp_liquid_staking_vote_payload: Голосование "%vote%" за предложение %voteAddress%
+$dapp_single_nominator_change_validator_payload: Изменение адреса валидатора стейкинг-контракта SingleNominator на %address%
+$dapp_single_nominator_withdraw_payload: Вывод %amount% TON из стейкинг-контракта SingleNominator
+$dapp_vesting_add_whitelist_payload: Добавление адреса %address% в whitelist вестинг-кошелька
+Search or enter address...: Введите адрес или запрос...
+Time synchronization issue. Please ensure your device's time settings are correct.: Проблема с синхронизацией времени. Пожалуйста, убедитесь, что настройки времени на вашем устройстве верны.
+Data was copied!: Данные скопированы!
+Open NFT Collection: Открыть коллекцию NFT
+Previous: Предыдущий
+Next: Следующий
+Insufficient TON for fee.: Недостаточно TON для комиссии.
+Send NFT: Отправить NFT
+NFT has been sent!: NFT отправлен!
+Cannot be sent: Нельзя отправить
+NFT is for sale: NFT на продаже
+More actions: Больше действий
+Open on %ton_explorer_name%: Открыть на %ton_explorer_name%
+Swap is not supported in Testnet.: Обмен не поддерживается в Testnet.
+Swap is not yet supported by Ledger.: Обмен ещё не поддерживается Ledger.
+Buying with card is not supported in Testnet.: Покупка с помощью карты не поддерживается в Testnet.
+Staking is not supported in Testnet.: Стейкинг не поддерживается в Testnet.
+Get Support: Поддержка
+$transfer_inactive_contract_error: |
+  Вы указали адрес в формате "EQ...", но он неактивен, поэтому транзакция не будет выполнена.
+  Если вы точно хотите отправить токены на этот адрес, то укажите его в формате "UQ...".'
+Successfully: Успешно
+Unstake More: Вывести ещё
+WrongAddress: Приложение запрашивает транзакцию с другого кошелька.
+Are you sure you want to burn this NFT? It will be lost forever.: Вы уверены, что хотите сжечь этот NFT? Он будет потерян навсегда.
+$multi_burn_nft_warning: "Вы собираетесь сжечь %amount% NFT."
+$multi_send_nft_warning: "Процесс может занять ~%duration% мин. Пожалуйста, не закрывайте приложение и не переключайтесь на другие аккаунты, пока он не завершится."
+Burn NFT: Сжечь NFT
+Burn: Сжечь
+Private Key: Приватный ключ
+"%amount% NFTs": "%amount% NFT"
+1 NFT: 1 NFT
+1 NFT Selected: 1 NFT выбран
+"%amount% NFTs Selected": "%amount% NFTs выбрано"
+For sale. Cannot be sent and burned: На продаже. Нельзя отправить и сжечь
+Select: Выбрать
+Send All: Отправить все
+Burn All: Сжечь все
+Select All: Выбрать все
+Collection: Коллекция
+Transaction ID was copied!: Идентификатор транзакции скопирован!
+$swap_changelly_support: "В случае возникновения проблем свяжитесь с Changelly через %livechat% или %email% и сообщите **идентификатор транзакции**:"
+Changelly Live Chat: онлайн-чат
+Your %blockchain% Address: Ваш адрес %blockchain%
+Vesting: Вестинг
+Vesting Balance: Баланс вестинга
+Ready to Unfreeze: Готово к разморозке
+You will receive your unfrozen coins in a few minutes.: Вы получите размороженные монеты через несколько минут.
+Vesting Schedule: Расписание вестинга
+Loyal User Airdrop: Вознаграждение лояльных пользователей
+Unfrozen: Разморожено
+Missed: Пропущено
+Frozen: Заморожено
+until %date%: до %date%
+"%volume% in %amount% parts": "%volume% в %amount% частях"
+Unfreeze: Разморозить
+Claim: Заклеймить
+Confirm Unfreezing: Подтвердите разморозку
+Insufficient Balance for Fee: Недостаточный баланс для комиссии
+$fee_value_bold: "**Комиссия:** %fee%"
+MyTonWallet Features: Функции MyTonWallet
+Install on Desktop: Установить на компьютер
+Install on Mobile: Установить на мобильное устройство
+Install App: Установить приложение
+WrongNetwork: Приложение запрашивает транзакцию из другой сети.
+Hide: Скрыть
+Hidden NFTs: Скрытые NFT
+Hidden By Me: Скрыто мной
+Probably Scam: Вероятно, скам
+$settings_nft_probably_scam_description: Эти NFT были автоматически отключены Защитой от мошенничества. Вы можете вернуть нужные на Главную страницу, если считаете, что они были включены в этот список по ошибке.
+Unhide: Показать
+Hide All: Скрыть всё
+Hide NFT: Скрыть NFT
+Reload Page: Перезагрузить страницу
+Open in Safari: Открыть в Safari
+Open in Browser: Открыть в браузере
+CopyURL: Скопировать URL
+Share: Поделиться
+Unhide NFT: Показать NFT
+$unhide_nft_warning: Вы уверены, что хотите показать %name%? Этот NFT выглядит подозрительно и может не соответствовать своему названию и описанию.
+Hide NFTs: Скрыть NFTs
+Are you sure you want to hide this NFT collection containing %number% NFTs?: Вы уверены, что хотите скрыть эту коллекцию NFT, содержащую %number% NFT?
+Are you sure you want to hide these %number% NFTs?: Вы уверены, что хотите скрыть эти %number% NFT?
+Show: Показать
+Confirm Sending: Подтвердите отправку
+Confirm Burning: Подтвердите сжигание
+Confirm Passcode: Подтвердите пароль
+Enter your code: Введите ваш код
+$hardware_payload_warning: Сторонний сервис запрашивает доступ к вашему кошельку — это может привести к потере средств. Отмените операцию, если вы не уверены в надёжности этого сервиса.
+$hardware_blind_sign_not_enabled: |
+  Сторонний сервис запрашивает доступ к вашему кошельку — это может привести к потере средств. Отмените операцию, если вы не уверены в надёжности этого сервиса.
+
+  Чтобы продолжить, включите опцию «Слепое подписание» в настройках TON App на Ledger.
+Switch to W5: Версия W5
+Not Scam: Не скам
+Untitled: Без названия
+$swap_too_small_amount: Слишком маленькая сумма

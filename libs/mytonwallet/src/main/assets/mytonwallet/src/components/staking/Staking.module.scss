@@ -1,0 +1,606 @@
+@import "../../styles/mixins";
+
+.modalDialog {
+  height: 35rem;
+
+  @supports (height: env(safe-area-inset-bottom)) {
+    height: calc(35rem + env(safe-area-inset-bottom));
+  }
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 1.25rem;
+  padding: 1rem 2rem 1rem 1rem;
+
+  background: var(--color-background-first);
+  border-radius: var(--border-radius-default);
+
+  &_static {
+    margin-bottom: 1.5rem;
+    padding: 0 0 1rem 0;
+  }
+}
+
+.welcomeInformation {
+  display: flex;
+  flex-direction: column;
+
+  margin-inline-start: 1rem;
+
+  font-size: 0.9375rem;
+  font-weight: 700;
+
+  &_static {
+    margin-inline-start: 0.75rem;
+  }
+}
+
+.stakingApy {
+  display: inline-block;
+  align-self: flex-start;
+
+  margin: 0.5rem 0 0.875rem;
+  padding: 0.375rem;
+
+  line-height: 0.9375rem;
+  color: var(--color-apy-text);
+
+  background: var(--color-apy-background);
+  border-radius: var(--border-radius-tiny);
+}
+
+.textButton {
+  align-self: flex-start;
+
+  min-width: 0 !important;
+  padding: 0;
+
+  font-size: 0.9375rem !important;
+  font-weight: 600;
+  line-height: 0.9375rem !important;
+  color: var(--color-blue);
+
+  transition: opacity 150ms;
+
+  &:hover,
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.sticker {
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  &_static {
+    margin-top: -0.375rem;
+  }
+}
+
+.stakingSafeDialog {
+  border-radius: var(--border-radius-default) !important;
+}
+
+.ton {
+  display: inline-flex;
+  align-items: center;
+
+  margin: 0;
+  padding: 0.75rem 1.125rem 0.75rem 0.5rem !important;
+
+  background-color: transparent;
+}
+
+.tonIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-inline-end: 0.375rem;
+
+  border-radius: 50%;
+}
+
+.tonName {
+  height: 1rem;
+
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-input-button-text);
+}
+
+.amountTopRight {
+  position: relative;
+  z-index: 1;
+
+  align-self: flex-end;
+
+  width: 75%;
+  height: auto !important;
+  min-height: 1rem;
+  margin: 0 0.5rem -0.8125rem auto;
+
+  font-size: 0.8125rem;
+  line-height: 1rem;
+
+  &_static {
+    --color-background-window: transparent;
+  }
+
+  &_slide {
+    text-align: right;
+
+    background: var(--color-background-window);
+  }
+
+  &.Transition {
+    > .Transition_slide-from {
+      animation-duration: 150ms !important;
+    }
+
+    > .Transition_slide-to {
+      animation-duration: 150ms !important;
+    }
+  }
+}
+
+.amountBottomWrapper {
+  position: relative;
+
+  &_static {
+    --color-background-window: transparent;
+  }
+}
+
+.amountBottom {
+  position: absolute;
+  top: -1.75rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: 1rem;
+  padding: 0 0.5rem;
+
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: var(--color-input-hint);
+}
+
+.amountBottomRight {
+  flex: 1;
+
+  color: var(--color-gray-5);
+
+  transition: color 150ms;
+
+  &_error {
+    color: var(--color-red);
+  }
+
+  &_slide {
+    text-align: right;
+
+    background: var(--color-background-window);
+  }
+
+  &.animating {
+    > .from {
+      animation-duration: 150ms !important;
+    }
+
+    > .to {
+      animation-duration: 150ms !important;
+    }
+  }
+}
+
+.balanceError {
+  color: var(--color-red);
+}
+
+.minAmountValue,
+.amountInCurrency,
+.notEnoughBalanceTextBold,
+.historyTotalValue {
+  font-weight: 600;
+}
+
+.balanceContainer {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+}
+
+.balance {
+  position: absolute;
+  top: 0rem;
+  right: 0.5rem;
+
+  display: flex;
+  gap: 0.25rem;
+
+  font-size: 0.8125rem;
+  color: var(--color-gray-1);
+}
+
+.balanceLink {
+  cursor: var(--custom-cursor, pointer);
+
+  font-weight: 600;
+  color: var(--color-blue);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+
+  @media (hover: hover) {
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
+  }
+}
+
+.stakingBalance {
+  margin-bottom: 0.75rem;
+}
+
+.amountInput {
+  margin-bottom: 2rem;
+}
+
+.inputStatic,
+.inputRichStatic {
+  background: transparent;
+  border: 1px solid var(--color-separator-input-stroke);
+}
+
+.inputStatic {
+  /* default input padding minus 1px accounted for border width */
+  padding: 0.5rem 0.6875rem 0.375rem;
+}
+
+.balanceResultWrapper {
+  margin-bottom: 0 !important;
+}
+
+.balanceResultInput {
+  display: block;
+}
+
+.balanceResultLabel {
+  color: var(--color-gray-2);
+}
+
+.balanceStakedLabel {
+  color: var(--color-purple-2) !important;
+}
+
+.balanceStakedResult {
+  color: var(--color-purple-1);
+}
+
+.balanceResult {
+  display: inline-flex;
+  align-items: baseline;
+
+  width: auto;
+
+  background: linear-gradient(81.88deg, var(--color-purple-1) 19.42%, #1EC160 71.55%);
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  :global(.theme-dark) & {
+    background: linear-gradient(81.88deg, var(--color-purple-1) 19.42%, var(--color-green) 71.55%);
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.stakingInfoModal {
+  overflow: hidden;
+
+  max-height: 19.875rem !important;
+
+  &_withHistory {
+    max-height: calc(95 * var(--vh, 1vh)) !important;
+
+    @media (min-width: 600.01px) {
+      max-height: 100% !important;
+    }
+  }
+}
+
+.stakingInfo {
+  --color-blue-button-text: var(--color-purple-button-text);
+  --color-blue-button-text-hover: var(--color-purple-button-text-hover);
+  --color-blue-button-background: var(--color-purple-button-background);
+  --color-blue-button-background-hover: var(--color-purple-button-background-hover);
+  --color-gray-button-text: var(--color-purple-button-light-text);
+  --color-gray-button-background: var(--color-purple-button-light-background);
+  --color-gray-button-text-hover: var(--color-purple-button-light-text-hover);
+  --color-gray-button-background-hover: var(--color-purple-button-light-background-hover);
+
+  --color-black: var(--color-purple-1);
+  --color-close-button-text: var(--color-purple-2);
+  --color-close-button-text-hover: var(--color-close-button-purple-text-hover);
+  --color-close-button-background: var(--color-close-button-purple-background);
+  --color-close-button-background-hover: var(--color-close-button-purple-background-hover);
+
+  background: var(--color-background-purple-2);
+  border-radius: var(--border-radius-small);
+
+  &_modal {
+    padding: 0 1rem 1rem;
+
+    border-radius: var(--border-radius-default);
+
+    @include respond-below(xs) {
+      :global(.is-android) & {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+  }
+
+  &:global(.staking-info) {
+    position: relative;
+
+    background: none;
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      top: -1rem;
+      right: -1rem;
+      bottom: -1rem;
+      left: -1rem;
+
+      background: var(--color-background-purple-2);
+      border-radius: var(--border-radius-default) 0 var(--border-radius-default) var(--border-radius-default);
+    }
+  }
+}
+
+@include respond-below(xs) {
+  .stakingInfoNoHistory {
+    border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+
+    @supports (padding-bottom: max(1rem, env(safe-area-inset-bottom))) {
+      padding-bottom: max(1rem, env(safe-area-inset-bottom))
+    }
+  }
+}
+
+.stakingInfoModalContent {
+  min-height: 0;
+
+  @media (max-height: 639.8px) {
+    border-radius: var(--border-radius-default) var(--border-radius-default) 0 0;
+
+    .history {
+      // Workaround for the bottom padding on flex layout
+      &::after {
+        content: '';
+
+        flex-shrink: 0;
+
+        height: 1rem;
+      }
+
+      @include adapt-padding-to-scrollbar(1rem);
+    }
+  }
+
+  @media (min-height: 640px) {
+    .historyList {
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+  }
+}
+
+.stakingInfoLoading {
+  --spinner-size: 1.5rem !important;
+
+  position: absolute !important;
+  right: 1.25rem;
+  bottom: 1.25rem;
+}
+
+.stakingInfoClose {
+  position: relative;
+  left: 1rem;
+}
+
+.stakingInfoButtons {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+
+  margin-top: 1.25rem;
+}
+
+.stakingInfoButton {
+  width: 100%;
+  min-width: 8rem !important;
+  max-width: 100% !important;
+
+  font-size: 0.9375rem !important;
+}
+
+.insufficientBalance {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-red);
+  text-align: center;
+}
+
+.unstakeTime {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  max-width: 19rem;
+  margin: 0.25rem auto 0;
+  padding: 0.75rem;
+
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-gray-1);
+  text-align: center;
+
+  background: var(--color-gray-button-background-light);
+  border-radius: var(--border-radius-buttons);
+
+  &_purple {
+    margin-top: 1.25rem;
+
+    color: var(--color-purple-button-light-text);
+
+    background: var(--color-purple-button-light-background);
+  }
+}
+
+.unstakeTimeIcon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 1rem;
+}
+
+.history {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  min-height: 0;
+  padding: 1.25rem 1rem 1rem;
+
+  &_static {
+    padding: 2.25rem 0 0;
+  }
+}
+
+.historyTotal {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+
+  font-size: 0.8125rem;
+  line-height: 0.8125rem;
+  color: var(--color-gray-2);
+
+  .history_static & {
+    top: 2.25rem;
+    right: 0;
+  }
+}
+
+.historyTitle {
+  margin-left: 0.5rem;
+
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 0.8125rem;
+  color: var(--color-gray-2);
+
+  .history_static & {
+    margin-left: 0;
+  }
+}
+
+.historyList {
+  flex-grow: 1;
+
+  margin-top: 0.5rem;
+
+  background: var(--color-background-first);
+  border-radius: var(--border-radius-default);
+
+  &_static {
+    margin-right: -1rem;
+    margin-bottom: -1rem;
+    margin-left: -1rem;
+  }
+}
+
+.stakingShortInfo {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+
+  height: 2rem;
+  padding: 0 0.5rem 0 0.375rem;
+
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-transaction-purple-text);
+
+  background-color: var(--color-transaction-purple-background);
+  border-radius: 1rem;
+
+  &.unstake {
+    color: var(--color-transaction-green-text);
+
+    background-color: var(--color-transaction-green-background);
+  }
+}
+
+.stakingShortInfoInsidePasswordForm {
+  align-self: center;
+
+  margin-bottom: 2rem;
+}
+
+.tokenIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+
+  border-radius: 50%;
+}
+
+.unstakeInfo {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  max-width: 19rem;
+  margin: 0.25rem auto 0;
+  padding: 0.75rem;
+
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-transaction-green-text);
+  text-align: center;
+
+  background: var(--color-transaction-green-background);
+  border-radius: var(--border-radius-buttons);
+}
+
+.notEnoughBalanceContent {
+  display: flex;
+  align-items: center;
+}
+
+.notEnoughBalanceText {
+  width: 19rem;
+  margin-top: 1.25rem;
+
+  font-size: 0.9375rem;
+  color: var(--color-gray-1);
+  text-align: center;
+}

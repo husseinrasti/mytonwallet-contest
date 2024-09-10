@@ -1,0 +1,221 @@
+.button,
+.item {
+  cursor: var(--custom-cursor, pointer);
+  user-select: none;
+
+  align-items: center;
+
+  color: var(--color-input-button-text);
+
+  border: none;
+  border-radius: var(--border-radius-small);
+  outline: none;
+
+  transition: background-color 150ms, color 150ms;
+
+  :global(html.animation-level-0) & {
+    transition: none !important;
+  }
+}
+
+.wide {
+  display: flex;
+
+  width: 100%;
+
+  &.interactive {
+    cursor: var(--custom-cursor, pointer);
+  }
+}
+
+.label {
+  margin-inline-end: auto;
+
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.button {
+  display: inline-flex;
+
+  margin: 0;
+  padding: 0.75rem !important;
+
+  background-color: transparent;
+
+  &:not(.interactive) {
+    cursor: default;
+  }
+
+  &.interactive {
+    background-color: var(--color-input-button-background);
+
+    &:active {
+      // Optimization
+      transition: none !important;
+    }
+
+    @media (hover: hover) {
+      &:hover,
+      &:focus-visible {
+        background-color: var(--color-input-button-background-hover);
+      }
+    }
+  }
+
+  .light & {
+    margin: -1rem;
+
+    color: var(--color-gray-3);
+
+    background: none;
+
+    &:hover,
+    &:focus-visible {
+      background: none;
+    }
+  }
+}
+
+.disabled {
+  cursor: not-allowed !important;
+
+  opacity: 0.6;
+
+  .button {
+    cursor: not-allowed !important;
+  }
+}
+
+.dangerous {
+  color: var(--color-red);
+}
+
+.separator {
+  position: relative;
+
+  margin-top: 0.5rem !important;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: -0.25rem;
+    left: -0.5rem;
+
+    width: calc(100% + 1rem);
+    height: 0.0625rem;
+
+    /* stylelint-disable-next-line plugin/whole-pixel */
+    box-shadow: 0 -0.025rem 0 0 var(--color-separator);
+  }
+}
+
+.buttonIcon {
+  margin-right: -0.0625rem;
+
+  font-size: 0.75rem;
+
+  .light & {
+    margin-right: -0.3125rem;
+
+    font-size: 1rem;
+    color: var(--color-gray-3);
+  }
+
+  &:global(.icon-chevron-down) {
+    margin-right: -0.3125rem;
+    margin-left: 0.375rem;
+  }
+}
+
+.item {
+  display: flex;
+
+  width: 100%;
+  margin: 0;
+  padding: 0.5625rem 0.625rem 0.5rem !important;
+
+  line-height: 1;
+  text-align: left;
+
+  background: none;
+
+  &:not(:last-of-type) {
+    margin-bottom: 0.25rem;
+  }
+
+  &_selected {
+    color: var(--color-selected-drop-down-item, var(--color-input-button-text));
+
+    background-color: var(--color-interactive-drop-down-menu-active) !important;
+  }
+
+  &_with_icon {
+    padding: 0.625rem !important;
+
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  &:active {
+    // Optimization
+    transition: none !important;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-interactive-drop-down-menu-hover) !important;
+  }
+}
+
+.itemIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-inline-end: 0.375rem;
+
+  border-radius: 50%;
+}
+
+.fontIcon {
+  margin-inline-end: 0.375rem;
+
+  font-size: 1.5rem;
+}
+
+.itemName {
+  unicode-bidi: plaintext;
+
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  .light & {
+    font-weight: 600;
+    line-height: 0.9375rem;
+  }
+}
+
+.itemDescription {
+  unicode-bidi: plaintext;
+  display: block;
+
+  margin-top: 0.125rem;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 0.75rem;
+  color: var(--color-gray-3);
+}
+
+.dropdownButtonWrapper {
+  display: flex;
+
+  width: 5rem;
+  height: 1rem;
+}
+
+.spinner {
+  --spinner-size: 1rem !important;
+}

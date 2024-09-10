@@ -1,0 +1,69 @@
+@import "../styles/variables";
+
+@import '../styles/mixins/';
+
+.containerInner {
+  overflow: hidden;
+
+  width: 100%;
+  height: 100%;
+}
+
+.appSlide {
+  --background-color: var(--color-background-second);
+
+  background: var(--color-background-second);
+
+  /* These styles need to be applied via regular CSS and not as conditional class, since Transition does not work well when `slideClassName` updates */
+  :global(html.is-extension) & {
+    overflow: auto;
+    overflow-x: hidden;
+  }
+
+  @include respond-below(xs) {
+    overflow: auto;
+    overflow-x: hidden;
+  }
+}
+
+.appSlide.appSlideTransparent {
+  background: transparent !important;
+
+  transition: background-color 150ms;
+  transition-delay: 350ms;
+
+  :global(html.is-ios) & {
+    transition-delay: 650ms;
+  }
+}
+
+.appSlideContent {
+  /* These styles need to be applied via regular CSS and not as conditional class, since Transition does not work well when `slideClassName` updates */
+  :global(html.is-extension) & {
+    overflow-y: scroll;
+  }
+
+  @include respond-below(xs) {
+    overflow-y: scroll;
+
+    :global(body.is-media-viewer-open) & {
+      overflow: hidden !important;
+
+      padding-right: var(--scrollbar-width);
+    }
+  }
+
+  @supports (padding-top: env(safe-area-inset-top)) {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+:global(html.is-electron) .transitionContainer {
+  height: calc(100% - 3rem);
+}
+
+.loading {
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}

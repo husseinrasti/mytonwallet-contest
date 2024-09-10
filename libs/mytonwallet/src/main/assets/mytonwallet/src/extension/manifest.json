@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "MyTonWallet · My TON Wallet",
+  "description": "The most feature-rich TON extension – with support of multi-accounts, tokens, NFT, TON DNS, TON Sites, TON Proxy, and TON Magic.",
+  "version": "%%SET BY WEBPACK%%",
+  "icons": {
+    "192": "icon-192x192.png",
+    "384": "icon-384x384.png",
+    "512": "icon-512x512.png"
+  },
+  "action": {
+    "default_title": "MyTonWallet"
+  },
+  "permissions": [
+    "webRequest",
+    "system.display",
+    "proxy",
+    "storage",
+    "unlimitedStorage"
+  ],
+  "background": {
+    "service_worker": "/extensionServiceWorker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "file://*/*",
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "/extensionContentScript.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "/extensionPageScript.js"
+      ],
+      "matches": [
+        "file://*/*",
+        "http://*/*",
+        "https://*/*"
+      ]
+    }
+  ],
+  "content_security_policy": "%%SET BY WEBPACK%%"
+}
