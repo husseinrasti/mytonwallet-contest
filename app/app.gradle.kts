@@ -10,6 +10,7 @@ dependencies {
     implementation(project(":component:ui"))
     implementation(project(":component:theme"))
     implementation(project(":component:navigation"))
+    implementation(project(":libs:mytonwallet"))
     implementation(project(":core:dagger-hilt"))
     implementation(project(":core:datastore"))
     implementation(project(":core:security"))
