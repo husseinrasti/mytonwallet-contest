@@ -52,7 +52,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 add("implementation", findLibrary("androidx.dataStore.core"))
                 add("implementation", findLibrary("androidx.dataStore.preferences"))
                 add("implementation", findLibrary("androidx.security.crypto"))
-                add("implementation", findLibrary("androidx.javascriptengine"))
                 add("testImplementation", findLibrary("junit"))
                 add("androidTestImplementation", findLibrary("androidx.junit"))
                 add("androidTestImplementation", findLibrary("androidx.espresso.core"))
